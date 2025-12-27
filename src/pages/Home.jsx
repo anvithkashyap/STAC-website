@@ -221,7 +221,7 @@ const Home = () => {
             <div className="animate-on-scroll relative">
               <div className="relative rounded-lg overflow-hidden shadow-2xl">
                 <img
-                  src="/Images/stac-office.png"
+                  src="/STAC-website/stac-office.png"
                   alt="STAC MoldTech Facility"
                   className="w-full h-auto"
                   loading="lazy"

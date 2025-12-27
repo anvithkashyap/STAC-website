@@ -16,7 +16,7 @@ const HeroSection = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/Images/stac-office.png)',
+            backgroundImage: 'url(/STAC-website/stac-office.png)',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-stac-red/95 via-stac-red-dark/90 to-stac-charcoal/95" />
@@ -43,7 +43,7 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="animate-fade-in">
             <img
-              src="/Images/stac-logo.png"
+              src="/STAC-website/stac-logo.png"
               alt="STAC"
               className="h-20 md:h-28 w-auto mx-auto mb-8 brightness-0 invert"
             />
