@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <img
-              src="/STAC-website/stac-logo.png"
+              src="./stac-logo.png"
               alt="STAC MoldTech"
               className="h-12 w-auto brightness-0 invert"
             />

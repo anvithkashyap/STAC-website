@@ -41,7 +41,7 @@ const Header = () => {
         <nav className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img
-              src="/STAC-website/stac-logo.png"
+              src="./stac-logo.png"
               alt="STAC MoldTech"
               className="h-12 md:h-14 w-auto"
             />
