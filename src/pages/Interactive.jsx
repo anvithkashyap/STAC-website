@@ -1,35 +1,12 @@
  import { useState, useRef, Suspense, useCallback, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { PerspectiveCamera, Environment, Html } from '@react-three/drei'
+import { PerspectiveCamera, Environment, Html, OrbitControls } from '@react-three/drei'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, RotateCcw, Info, Hand, Package } from 'lucide-react'
+import { ArrowLeft, RotateCcw, Info, Package, Maximize2, Minimize2, ArrowUp, ArrowDown, ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
 import * as THREE from 'three'
 
-// Inverse kinematics helper to calculate arm angles for target position
-const calculateIK = (targetX, targetY, arm1Length, arm2Length) => {
-  const distance = Math.sqrt(targetX * targetX + targetY * targetY)
-  const maxReach = arm1Length + arm2Length
-  const minReach = Math.abs(arm1Length - arm2Length)
-  
-  // Clamp distance to reachable range
-  const clampedDistance = Math.max(minReach + 0.1, Math.min(maxReach - 0.1, distance))
-  const scale = clampedDistance / distance
-  const clampedX = targetX * scale
-  const clampedY = targetY * scale
-  
-  // Calculate angles using law of cosines
-  const cosAngle2 = (clampedX * clampedX + clampedY * clampedY - arm1Length * arm1Length - arm2Length * arm2Length) / (2 * arm1Length * arm2Length)
-  const angle2 = Math.acos(Math.max(-1, Math.min(1, cosAngle2)))
-  
-  const k1 = arm1Length + arm2Length * Math.cos(angle2)
-  const k2 = arm2Length * Math.sin(angle2)
-  const angle1 = Math.atan2(clampedY, clampedX) - Math.atan2(k2, k1)
-  
-  return { angle1: angle1 - Math.PI / 2, angle2: Math.PI - angle2 }
-}
-
-// Robot Arm Component with mouse following
-const RobotArm = ({ mousePosition, isHolding, gripperEndRef }) => {
+// Robot Arm with keyboard controls
+const RobotArm = ({ controls, isHolding, gripperEndRef }) => {
   const baseRef = useRef()
   const arm1Ref = useRef()
   const arm2Ref = useRef()
@@ -37,38 +14,47 @@ const RobotArm = ({ mousePosition, isHolding, gripperEndRef }) => {
   const gripperLeftRef = useRef()
   const gripperRightRef = useRef()
   
-  const arm1Length = 1.6
-  const arm2Length = 1.2
+  // Joint angles controlled by keyboard
+  const angles = useRef({
+    base: 0,      // unlimited rotation (360 degrees)
+    arm1: 0.2,    // -0.8 to 1.0 (shoulder) - adjusted for better reach
+    arm2: 0.5     // -1.0 to 1.8 (elbow) - extended range
+  })
 
   useFrame(() => {
-    if (!mousePosition) return
+    // Update angles based on keyboard input
+    const speed = 0.03
     
-    // Calculate base rotation to face mouse X position
-    const baseAngle = Math.atan2(mousePosition.x, 2) * 0.8
+    // Left/Right arrow - rotate base (360 degrees, no limits)
+    if (controls.left) angles.current.base += speed
+    if (controls.right) angles.current.base -= speed
+    
+    // Up/Down arrow - move arm1 (shoulder)
+    if (controls.up) angles.current.arm1 = Math.max(-0.8, angles.current.arm1 - speed)
+    if (controls.down) angles.current.arm1 = Math.min(1.0, angles.current.arm1 + speed)
+    
+    // W/S - move arm2 (elbow)
+    if (controls.w) angles.current.arm2 = Math.max(-1.0, angles.current.arm2 - speed)
+    if (controls.s) angles.current.arm2 = Math.min(1.8, angles.current.arm2 + speed)
+    
+    // Apply angles with smooth interpolation
     if (baseRef.current) {
-      baseRef.current.rotation.y = THREE.MathUtils.lerp(baseRef.current.rotation.y, baseAngle, 0.1)
+      baseRef.current.rotation.y = THREE.MathUtils.lerp(baseRef.current.rotation.y, angles.current.base, 0.1)
     }
-    
-    // Calculate IK for arm segments
-    const targetY = mousePosition.y + 1.5 // Offset for base height
-    const targetX = Math.sqrt(mousePosition.x * mousePosition.x + 4) - 1 // Distance from base
-    
-    const { angle1, angle2 } = calculateIK(targetX, targetY, arm1Length, arm2Length)
-    
     if (arm1Ref.current) {
-      arm1Ref.current.rotation.z = THREE.MathUtils.lerp(arm1Ref.current.rotation.z, angle1, 0.1)
+      arm1Ref.current.rotation.z = THREE.MathUtils.lerp(arm1Ref.current.rotation.z, angles.current.arm1, 0.1)
     }
     if (arm2Ref.current) {
-      arm2Ref.current.rotation.z = THREE.MathUtils.lerp(arm2Ref.current.rotation.z, angle2, 0.1)
+      arm2Ref.current.rotation.z = THREE.MathUtils.lerp(arm2Ref.current.rotation.z, angles.current.arm2, 0.1)
     }
     
     // Animate gripper based on holding state
-    const gripperOpen = isHolding ? 0.05 : 0.15
+    const gripperOpen = isHolding ? 0.08 : 0.18
     if (gripperLeftRef.current) {
-      gripperLeftRef.current.position.x = THREE.MathUtils.lerp(gripperLeftRef.current.position.x, -gripperOpen, 0.2)
+      gripperLeftRef.current.position.x = THREE.MathUtils.lerp(gripperLeftRef.current.position.x, -gripperOpen, 0.15)
     }
     if (gripperRightRef.current) {
-      gripperRightRef.current.position.x = THREE.MathUtils.lerp(gripperRightRef.current.position.x, gripperOpen, 0.2)
+      gripperRightRef.current.position.x = THREE.MathUtils.lerp(gripperRightRef.current.position.x, gripperOpen, 0.15)
     }
     
     // Update gripper end position for collision detection
@@ -80,61 +66,77 @@ const RobotArm = ({ mousePosition, isHolding, gripperEndRef }) => {
   })
 
   return (
-    <group position={[0, -1.5, 0]}>
+    <group position={[0, -2, 0]}>
       {/* Base Platform */}
       <mesh position={[0, 0, 0]}>
-        <cylinderGeometry args={[1.2, 1.4, 0.3, 32]} />
+        <cylinderGeometry args={[1.0, 1.2, 0.4, 32]} />
         <meshStandardMaterial color="#2D2D2D" metalness={0.8} roughness={0.2} />
       </mesh>
 
       {/* Rotating Base */}
-      <group ref={baseRef} position={[0, 0.3, 0]}>
+      <group ref={baseRef} position={[0, 0.4, 0]}>
         <mesh>
-          <cylinderGeometry args={[0.6, 0.8, 0.4, 32]} />
+          <cylinderGeometry args={[0.5, 0.7, 0.5, 32]} />
           <meshStandardMaterial color="#8B1A1A" metalness={0.6} roughness={0.3} />
         </mesh>
 
-        {/* First Arm Segment */}
-        <group ref={arm1Ref} position={[0, 0.4, 0]}>
-          <mesh position={[0, 0.8, 0]}>
-            <boxGeometry args={[0.4, 1.6, 0.4]} />
+        {/* First Arm Segment (Shoulder) */}
+        <group ref={arm1Ref} position={[0, 0.5, 0]}>
+          <mesh position={[0, 0.9, 0]}>
+            <boxGeometry args={[0.35, 1.8, 0.35]} />
             <meshStandardMaterial color="#e86a0b" metalness={0.5} roughness={0.4} />
           </mesh>
           
-          {/* Joint */}
-          <mesh position={[0, 1.6, 0]}>
-            <sphereGeometry args={[0.25, 32, 32]} />
+          {/* Shoulder Joint */}
+          <mesh position={[0, 0, 0]}>
+            <sphereGeometry args={[0.22, 32, 32]} />
+            <meshStandardMaterial color="#2D2D2D" metalness={0.7} roughness={0.3} />
+          </mesh>
+          
+          {/* Elbow Joint */}
+          <mesh position={[0, 1.8, 0]}>
+            <sphereGeometry args={[0.2, 32, 32]} />
             <meshStandardMaterial color="#2D2D2D" metalness={0.7} roughness={0.3} />
           </mesh>
 
-          {/* Second Arm Segment */}
-          <group ref={arm2Ref} position={[0, 1.6, 0]}>
-            <mesh position={[0, 0.6, 0]}>
-              <boxGeometry args={[0.3, 1.2, 0.3]} />
+          {/* Second Arm Segment (Forearm) */}
+          <group ref={arm2Ref} position={[0, 1.8, 0]}>
+            <mesh position={[0, 0.7, 0]}>
+              <boxGeometry args={[0.28, 1.4, 0.28]} />
               <meshStandardMaterial color="#8B1A1A" metalness={0.5} roughness={0.4} />
             </mesh>
 
             {/* Wrist Joint */}
-            <mesh position={[0, 1.2, 0]}>
-              <sphereGeometry args={[0.2, 32, 32]} />
+            <mesh position={[0, 1.4, 0]}>
+              <sphereGeometry args={[0.15, 32, 32]} />
               <meshStandardMaterial color="#2D2D2D" metalness={0.7} roughness={0.3} />
             </mesh>
 
             {/* Gripper */}
-            <group ref={gripperRef} position={[0, 1.4, 0]}>
-              <mesh position={[0, 0.15, 0]}>
-                <boxGeometry args={[0.25, 0.3, 0.25]} />
+            <group ref={gripperRef} position={[0, 1.6, 0]}>
+              <mesh position={[0, 0.12, 0]}>
+                <boxGeometry args={[0.3, 0.25, 0.3]} />
                 <meshStandardMaterial color="#e86a0b" metalness={0.5} roughness={0.4} />
               </mesh>
               
               {/* Gripper Fingers */}
-              <mesh ref={gripperLeftRef} position={[-0.15, 0.4, 0]}>
-                <boxGeometry args={[0.08, 0.3, 0.15]} />
+              <mesh ref={gripperLeftRef} position={[-0.18, 0.35, 0]}>
+                <boxGeometry args={[0.08, 0.35, 0.18]} />
                 <meshStandardMaterial color="#2D2D2D" metalness={0.6} roughness={0.3} />
               </mesh>
-              <mesh ref={gripperRightRef} position={[0.15, 0.4, 0]}>
-                <boxGeometry args={[0.08, 0.3, 0.15]} />
+              <mesh ref={gripperRightRef} position={[0.18, 0.35, 0]}>
+                <boxGeometry args={[0.08, 0.35, 0.18]} />
                 <meshStandardMaterial color="#2D2D2D" metalness={0.6} roughness={0.3} />
+              </mesh>
+              
+              {/* Gripper indicator */}
+              <mesh position={[0, 0.5, 0]}>
+                <sphereGeometry args={[0.06, 16, 16]} />
+                <meshStandardMaterial 
+                  color={isHolding ? "#00ff00" : "#ff6600"} 
+                  emissive={isHolding ? "#00ff00" : "#ff6600"}
+                  emissiveIntensity={0.6}
+                />
               </mesh>
             </group>
           </group>
@@ -142,7 +144,7 @@ const RobotArm = ({ mousePosition, isHolding, gripperEndRef }) => {
       </group>
 
       {/* Floor Grid */}
-      <gridHelper args={[12, 24, '#8B1A1A', '#444444']} position={[0, -0.15, 0]} />
+      <gridHelper args={[14, 28, '#8B1A1A', '#444444']} position={[0, 0, 0]} />
     </group>
   )
 }
@@ -284,68 +286,114 @@ const PickableCube = ({ id, initialPosition, isHeld, heldPosition, gripperEndRef
 }
 
 // Scene Manager Component
-const SceneManager = ({ mousePosition, isHolding, setIsHolding, score, setScore }) => {
+const SceneManager = ({ controls, isHolding, score, setScore, gameOver, setGameOver, resetTrigger }) => {
   const gripperEndRef = useRef(new THREE.Vector3())
   const [cubes] = useState([
-    { id: 1, position: [-5, -1.05, 0] },
-    { id: 2, position: [-7, -1.05, 0] },
-    { id: 3, position: [-9, -1.05, 0] },
+    { id: 1, position: [-4, -1.55, 0] },
+    { id: 2, position: [-5.5, -1.55, 0] },
+    { id: 3, position: [-7, -1.55, 0] },
   ])
   const [heldCubeId, setHeldCubeId] = useState(null)
   const cubePositions = useRef({})
+  const prevIsHolding = useRef(false)
+  const cubesInPickupZone = useRef(0)
+  const droppedCubes = useRef(new Set())
+  const cubeResetTrigger = useRef(0)
   
   // Register cube position updates
   const updateCubePosition = useCallback((id, position) => {
     cubePositions.current[id] = position.clone()
   }, [])
   
-  // Check for cube pickup when holding starts
+  // Reset game state when resetTrigger changes
   useEffect(() => {
-    if (isHolding && !heldCubeId && gripperEndRef.current) {
+    if (resetTrigger > cubeResetTrigger.current) {
+      setHeldCubeId(null)
+      cubePositions.current = {}
+      droppedCubes.current = new Set()
+      cubesInPickupZone.current = 0
+      cubeResetTrigger.current = resetTrigger
+    }
+  }, [resetTrigger])
+
+  // Check for cube pickup and game over conditions
+  useFrame(() => {
+    if (gameOver) return // Don't process if game is over
+    
+    // Count cubes in pickup zone
+    let cubesInZone = 0
+    Object.entries(cubePositions.current).forEach(([id, pos]) => {
+      if (pos && pos.x >= -3.5 && pos.x <= -1.5 && pos.y >= -2) {
+        cubesInZone++
+      }
+    })
+    cubesInPickupZone.current = cubesInZone
+    
+    // Game over if 3 or more cubes stack in pickup zone
+    if (cubesInZone >= 3) {
+      setGameOver('Too many cubes stacked! The conveyor belt is blocked.')
+      return
+    }
+    
+    // Detect grab key press transition
+    if (isHolding && !prevIsHolding.current && heldCubeId === null) {
       // Find nearest cube within range
       let nearestId = null
-      let nearestDist = 1.0 // Max pickup distance
+      let nearestDist = 1.2 // Max pickup distance
       
-      Object.entries(cubePositions.current).forEach(([id, pos]) => {
-        if (pos) {
-          const distance = gripperEndRef.current.distanceTo(pos)
-          if (distance < nearestDist) {
-            nearestDist = distance
-            nearestId = parseInt(id)
+      const gripperPos = gripperEndRef.current
+      if (gripperPos) {
+        Object.entries(cubePositions.current).forEach(([id, pos]) => {
+          if (pos) {
+            const distance = gripperPos.distanceTo(pos)
+            if (distance < nearestDist) {
+              nearestDist = distance
+              nearestId = parseInt(id)
+            }
           }
+        })
+        
+        if (nearestId !== null) {
+          setHeldCubeId(nearestId)
         }
-      })
-      
-      if (nearestId !== null) {
-        setHeldCubeId(nearestId)
       }
     }
-  }, [isHolding])
-  
-  // Release cube when mouse released
-  useEffect(() => {
-    if (!isHolding && heldCubeId !== null) {
+    
+    // Detect grab key release transition
+    if (!isHolding && prevIsHolding.current && heldCubeId !== null) {
       setHeldCubeId(null)
     }
-  }, [isHolding])
+    
+    prevIsHolding.current = isHolding
+  })
   
-  const handleCubeDropped = useCallback((id) => {
-    setScore(prev => prev + 1)
-  }, [setScore])
+  const handleCubeDropped = useCallback((id, droppedInCorrectZone) => {
+    if (droppedInCorrectZone) {
+      setScore(prev => prev + 1)
+    } else {
+      // Game over if cube dropped in wrong place
+      setGameOver('Cube dropped in wrong location! Game Over.')
+    }
+  }, [setScore, setGameOver])
+
+  const handleCubeReset = useCallback((id) => {
+    // Remove cube from dropped set when it resets to allow pickup again
+    droppedCubes.current.delete(id)
+  }, [])
 
   return (
     <>
       <RobotArm 
-        mousePosition={mousePosition} 
+        controls={controls} 
         isHolding={isHolding && heldCubeId !== null}
         gripperEndRef={gripperEndRef}
       />
       
       {/* Left Conveyor Belt (incoming cubes) */}
-      <ConveyorBelt position={[-3.5, -1.35, 0]} direction={1} color="#3d3d3d" />
+      <ConveyorBelt position={[-3.5, -1.85, 0]} direction={1} color="#3d3d3d" />
       
       {/* Right Conveyor Belt (outgoing cubes) */}
-      <ConveyorBelt position={[3.5, -1.35, 0]} direction={1} color="#3d3d3d" />
+      <ConveyorBelt position={[3.5, -1.85, 0]} direction={1} color="#3d3d3d" />
       
       {/* Cubes */}
       {cubes.map((cube) => (
@@ -356,31 +404,46 @@ const SceneManager = ({ mousePosition, isHolding, setIsHolding, score, setScore 
           isHeld={heldCubeId === cube.id}
           heldPosition={gripperEndRef.current}
           onDropped={handleCubeDropped}
+          onReset={handleCubeReset}
           updatePosition={updateCubePosition}
+          resetTrigger={resetTrigger}
         />
       ))}
       
       {/* Drop Zone Indicator on right belt */}
-      <mesh position={[3.5, -1.1, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[3.5, -1.6, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[4, 1.2]} />
-        <meshBasicMaterial color="#00ff00" transparent opacity={0.15} />
+        <meshBasicMaterial color="#00ff00" transparent opacity={0.2} />
       </mesh>
       
       {/* Pickup Zone Indicator on left belt */}
-      <mesh position={[-1.5, -1.1, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[1.5, 1.2]} />
-        <meshBasicMaterial color="#ff6600" transparent opacity={0.15} />
+      <mesh position={[-2.5, -1.6, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[3, 1.2]} />
+        <meshBasicMaterial color="#ff6600" transparent opacity={0.2} />
       </mesh>
     </>
   )
 }
 
 // Wrapper component to track cube positions
-const PickableCubeWithRef = ({ id, initialPosition, isHeld, heldPosition, onDropped, updatePosition }) => {
+const PickableCubeWithRef = ({ id, initialPosition, isHeld, heldPosition, onDropped, onReset, updatePosition, resetTrigger }) => {
   const meshRef = useRef()
   const [isOnRightBelt, setIsOnRightBelt] = useState(false)
   const [wasHeld, setWasHeld] = useState(false)
+  const [isDropped, setIsDropped] = useState(false)
+  const lastResetTrigger = useRef(0)
   
+  // Reset cube position when resetTrigger changes
+  useEffect(() => {
+    if (resetTrigger > lastResetTrigger.current && meshRef.current) {
+      meshRef.current.position.set(initialPosition[0], initialPosition[1], initialPosition[2])
+      setIsOnRightBelt(false)
+      setWasHeld(false)
+      setIsDropped(false)
+      lastResetTrigger.current = resetTrigger
+    }
+  }, [resetTrigger, initialPosition])
+
   useFrame(() => {
     if (!meshRef.current) return
     
@@ -395,31 +458,36 @@ const PickableCubeWithRef = ({ id, initialPosition, isHeld, heldPosition, onDrop
       meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, heldPosition.y - 0.5, 0.25)
       meshRef.current.position.z = THREE.MathUtils.lerp(meshRef.current.position.z, heldPosition.z, 0.25)
       setWasHeld(true)
-    } else if (wasHeld && !isHeld) {
-      // Just dropped - check if on right belt
+    } else if (wasHeld && !isHeld && !isDropped) {
+      // Just dropped - check if on right belt (green zone)
       const x = meshRef.current.position.x
-      if (x > 1 && x < 6) {
+      const y = meshRef.current.position.y
+      
+      if (x > 1.5 && x < 5.5 && y > -2.5) {
+        // Dropped in correct zone (right belt)
         setIsOnRightBelt(true)
-        meshRef.current.position.y = -1.05
-        onDropped(id)
+        meshRef.current.position.y = -1.55
+        onDropped(id, true) // true = dropped in correct zone
         setWasHeld(false)
+        setIsDropped(true)
       } else {
-        // Dropped elsewhere - fall and reset
-        meshRef.current.position.y -= 0.08
-        if (meshRef.current.position.y < -3) {
-          meshRef.current.position.set(initialPosition[0], initialPosition[1], initialPosition[2])
-          setWasHeld(false)
-        }
+        // Dropped in wrong location - trigger game over
+        onDropped(id, false) // false = dropped in wrong zone
+        setWasHeld(false)
+        setIsDropped(true)
       }
-    } else if (isOnRightBelt) {
+    } else if (isOnRightBelt && !isHeld) {
       // Move along right belt
       meshRef.current.position.x += 0.02
       if (meshRef.current.position.x > 7) {
         // Reset cube to left belt
         meshRef.current.position.set(initialPosition[0], initialPosition[1], initialPosition[2])
         setIsOnRightBelt(false)
+        setIsDropped(false)
+        // Call onReset to remove from droppedCubes set
+        if (onReset) onReset(id)
       }
-    } else {
+    } else if (!isDropped && !isHeld) {
       // Move along left belt (incoming)
       meshRef.current.position.x += 0.012
       // Stop at pickup zone
@@ -446,32 +514,34 @@ const PickableCubeWithRef = ({ id, initialPosition, isHeld, heldPosition, onDrop
   )
 }
 
-// Mouse tracker component
+// Mouse tracker component - simple screen-space to world-space mapping
 const MouseTracker = ({ setMousePosition }) => {
-  const { camera, size } = useThree()
-  
-  const handleMouseMove = useCallback((event) => {
-    const rect = event.target.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width) * 2 - 1
-    const y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-    
-    // Convert to 3D position on a plane
-    const vector = new THREE.Vector3(x, y, 0.5)
-    vector.unproject(camera)
-    const dir = vector.sub(camera.position).normalize()
-    const distance = -camera.position.z / dir.z
-    const pos = camera.position.clone().add(dir.multiplyScalar(distance * 0.6))
-    
-    setMousePosition({ x: pos.x * 1.5, y: pos.y * 1.5 + 1 })
-  }, [camera, setMousePosition])
+  const { gl } = useThree()
   
   useEffect(() => {
-    const canvas = document.querySelector('canvas')
-    if (canvas) {
-      canvas.addEventListener('mousemove', handleMouseMove)
-      return () => canvas.removeEventListener('mousemove', handleMouseMove)
+    const canvas = gl.domElement
+    
+    const handleMouseMove = (event) => {
+      const rect = canvas.getBoundingClientRect()
+      // Normalize mouse position to -1 to 1
+      const normalizedX = ((event.clientX - rect.left) / rect.width) * 2 - 1
+      const normalizedY = -((event.clientY - rect.top) / rect.height) * 2 + 1
+      
+      // Simple direct mapping to world coordinates
+      // X: -5 to 5 (covers both belts)
+      // Y: 0.5 to 3 (height range for gripper)
+      const worldX = normalizedX * 5
+      const worldY = normalizedY * 1.5 + 1.5
+      
+      setMousePosition({ 
+        x: Math.max(-5, Math.min(5, worldX)), 
+        y: Math.max(0.3, Math.min(3, worldY)) 
+      })
     }
-  }, [handleMouseMove])
+    
+    canvas.addEventListener('mousemove', handleMouseMove)
+    return () => canvas.removeEventListener('mousemove', handleMouseMove)
+  }, [gl, setMousePosition])
   
   return null
 }
@@ -486,27 +556,128 @@ const LoadingSpinner = () => (
 )
 
 const Interactive = () => {
-  const [mousePosition, setMousePosition] = useState(null)
+  const [controls, setControls] = useState({
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+    w: false,
+    s: false
+  })
   const [isHolding, setIsHolding] = useState(false)
   const [showInstructions, setShowInstructions] = useState(true)
   const [score, setScore] = useState(0)
+  const [gameOver, setGameOver] = useState(null)
+  const [resetTrigger, setResetTrigger] = useState(0)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const canvasRef = useRef(null)
+  const containerRef = useRef(null)
 
-  const handleMouseDown = useCallback((e) => {
-    if (e.button === 0) {
-      setIsHolding(true)
+  // Keyboard event handlers
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch(e.key) {
+        case 'ArrowLeft':
+        case 'a':
+        case 'A':
+          setControls(prev => ({ ...prev, left: true }))
+          e.preventDefault()
+          break
+        case 'ArrowRight':
+        case 'd':
+        case 'D':
+          setControls(prev => ({ ...prev, right: true }))
+          e.preventDefault()
+          break
+        case 'ArrowUp':
+          setControls(prev => ({ ...prev, up: true }))
+          e.preventDefault()
+          break
+        case 'ArrowDown':
+          setControls(prev => ({ ...prev, down: true }))
+          e.preventDefault()
+          break
+        case 'w':
+        case 'W':
+          setControls(prev => ({ ...prev, w: true }))
+          e.preventDefault()
+          break
+        case 's':
+        case 'S':
+          setControls(prev => ({ ...prev, s: true }))
+          e.preventDefault()
+          break
+        case ' ':
+          setIsHolding(true)
+          e.preventDefault()
+          break
+      }
     }
-  }, [])
-
-  const handleMouseUp = useCallback((e) => {
-    if (e.button === 0) {
-      setIsHolding(false)
+    
+    const handleKeyUp = (e) => {
+      switch(e.key) {
+        case 'ArrowLeft':
+        case 'a':
+        case 'A':
+          setControls(prev => ({ ...prev, left: false }))
+          break
+        case 'ArrowRight':
+        case 'd':
+        case 'D':
+          setControls(prev => ({ ...prev, right: false }))
+          break
+        case 'ArrowUp':
+          setControls(prev => ({ ...prev, up: false }))
+          break
+        case 'ArrowDown':
+          setControls(prev => ({ ...prev, down: false }))
+          break
+        case 'w':
+        case 'W':
+          setControls(prev => ({ ...prev, w: false }))
+          break
+        case 's':
+        case 'S':
+          setControls(prev => ({ ...prev, s: false }))
+          break
+        case ' ':
+          setIsHolding(false)
+          break
+      }
+    }
+    
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp)
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp)
     }
   }, [])
 
   const handleReset = () => {
     setScore(0)
+    setGameOver(null)
+    setResetTrigger(prev => prev + 1) // Trigger cube reset
   }
+
+  const toggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen()
+      setIsFullscreen(true)
+    } else {
+      document.exitFullscreen()
+      setIsFullscreen(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement)
+    }
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
+  }, [])
 
   return (
     <div className="min-h-screen bg-stac-gray pt-20">
@@ -530,17 +701,27 @@ const Interactive = () => {
       </div>
 
       {/* 3D Canvas */}
-      <div className="container-custom py-8">
-        <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+      <div className={isFullscreen ? "" : "container-custom py-8"}>
+        <div 
+          ref={containerRef}
+          className={`bg-white rounded-lg shadow-xl overflow-hidden ${isFullscreen ? 'fixed inset-0 z-50 rounded-none' : ''}`}
+        >
           <div 
-            className="relative h-[500px] md:h-[600px] cursor-grab active:cursor-grabbing"
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={() => setIsHolding(false)}
+            className={`relative ${isFullscreen ? 'h-screen' : 'h-[500px] md:h-[600px]'}`}
+            tabIndex={0}
           >
             <Canvas shadows ref={canvasRef}>
               <Suspense fallback={<LoadingSpinner />}>
-                <PerspectiveCamera makeDefault position={[0, 4, 10]} fov={50} />
+                <PerspectiveCamera makeDefault position={[0, 8, 15]} fov={60} />
+                <OrbitControls 
+                  enablePan={false} 
+                  enableZoom={true} 
+                  enableRotate={true}
+                  minDistance={10}
+                  maxDistance={25}
+                  minPolarAngle={Math.PI / 6}
+                  maxPolarAngle={Math.PI / 2.2}
+                />
                 
                 {/* Lighting */}
                 <ambientLight intensity={0.5} />
@@ -555,54 +736,77 @@ const Interactive = () => {
                 
                 {/* Scene */}
                 <SceneManager 
-                  mousePosition={mousePosition}
+                  controls={controls}
                   isHolding={isHolding}
-                  setIsHolding={setIsHolding}
                   score={score}
                   setScore={setScore}
+                  gameOver={gameOver}
+                  setGameOver={setGameOver}
+                  resetTrigger={resetTrigger}
                 />
-                
-                <MouseTracker setMousePosition={setMousePosition} />
                 
                 <Environment preset="warehouse" />
               </Suspense>
             </Canvas>
 
             {/* Score Display */}
-            <div className="absolute top-4 right-4 bg-stac-red text-white px-4 py-2 rounded-lg shadow-lg">
-              <div className="flex items-center gap-2">
-                <Package size={20} />
-                <span className="font-heading font-bold text-xl">{score}</span>
-                <span className="text-sm opacity-80">cubes moved</span>
+            <div className="absolute top-4 right-4 flex items-center gap-2">
+              <div className="bg-stac-red text-white px-4 py-2 rounded-lg shadow-lg">
+                <div className="flex items-center gap-2">
+                  <Package size={20} />
+                  <span className="font-heading font-bold text-xl">{score}</span>
+                  <span className="text-sm opacity-80">cubes moved</span>
+                </div>
               </div>
+              <button
+                onClick={toggleFullscreen}
+                className="w-10 h-10 bg-white rounded-lg shadow-lg flex items-center justify-center hover:bg-stac-gray transition-colors"
+                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+              >
+                {isFullscreen ? <Minimize2 size={20} className="text-stac-charcoal" /> : <Maximize2 size={20} className="text-stac-charcoal" />}
+              </button>
             </div>
 
             {/* Instructions Overlay */}
             {showInstructions && (
-              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-xs">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-heading font-bold text-stac-charcoal">How to Play</h3>
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-sm">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="font-heading font-bold text-stac-charcoal">Keyboard Controls</h3>
                   <button 
                     onClick={() => setShowInstructions(false)}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-gray-400 hover:text-gray-600 text-xl leading-none"
                   >
                     ×
                   </button>
                 </div>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li className="flex items-start gap-2">
-                    <Hand size={16} className="text-stac-red flex-shrink-0 mt-0.5" />
-                    <span><strong>Move mouse</strong> to control the robot arm</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-4 h-4 bg-stac-charcoal rounded flex-shrink-0 mt-0.5" />
-                    <span><strong>Click & hold</strong> near a cube to grab it</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Package size={16} className="text-stac-orange flex-shrink-0 mt-0.5" />
-                    <span><strong>Release</strong> over the right belt to drop</span>
-                  </li>
-                </ul>
+                <div className="text-sm text-gray-600 space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-1">
+                      <kbd className="px-2 py-1 bg-gray-100 border rounded text-xs font-mono">←</kbd>
+                      <kbd className="px-2 py-1 bg-gray-100 border rounded text-xs font-mono">→</kbd>
+                    </div>
+                    <span>Rotate base left/right</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-1">
+                      <kbd className="px-2 py-1 bg-gray-100 border rounded text-xs font-mono">↑</kbd>
+                      <kbd className="px-2 py-1 bg-gray-100 border rounded text-xs font-mono">↓</kbd>
+                    </div>
+                    <span>Move shoulder up/down</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-1">
+                      <kbd className="px-2 py-1 bg-gray-100 border rounded text-xs font-mono">W</kbd>
+                      <kbd className="px-2 py-1 bg-gray-100 border rounded text-xs font-mono">S</kbd>
+                    </div>
+                    <span>Move elbow up/down</span>
+                  </div>
+                  <div className="flex items-center gap-3 pt-2 border-t">
+                    <kbd className="px-3 py-1 bg-stac-red text-white border rounded text-xs font-mono">SPACE</kbd>
+                    <span><strong>Hold</strong> to grab cube</span>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 mt-3">Move cubes from the <span className="text-orange-500 font-medium">orange zone</span> to the <span className="text-green-500 font-medium">green zone</span></p>
               </div>
             )}
 
@@ -618,10 +822,47 @@ const Interactive = () => {
 
             {/* Holding Indicator */}
             {isHolding && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stac-orange text-white px-4 py-2 rounded-full shadow-lg animate-pulse">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-full shadow-lg animate-pulse">
                 <div className="flex items-center gap-2">
-                  <Hand size={18} />
-                  <span className="font-medium">Grabbing...</span>
+                  <span className="font-medium">🤖 Gripper Closed - Holding SPACE</span>
+                </div>
+              </div>
+            )}
+            
+            {/* Active Keys Indicator */}
+            {!gameOver && (
+              <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-2 rounded-lg text-xs font-mono">
+                <div className="flex gap-2">
+                  <span className={controls.left ? 'text-green-400' : 'text-gray-500'}>←</span>
+                  <span className={controls.right ? 'text-green-400' : 'text-gray-500'}>→</span>
+                  <span className={controls.up ? 'text-green-400' : 'text-gray-500'}>↑</span>
+                  <span className={controls.down ? 'text-green-400' : 'text-gray-500'}>↓</span>
+                  <span className={controls.w ? 'text-green-400' : 'text-gray-500'}>W</span>
+                  <span className={controls.s ? 'text-green-400' : 'text-gray-500'}>S</span>
+                  <span className={isHolding ? 'text-green-400' : 'text-gray-500'}>SPACE</span>
+                </div>
+              </div>
+            )}
+
+            {/* Game Over Overlay */}
+            {gameOver && (
+              <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-50">
+                <div className="bg-white rounded-lg p-8 max-w-md text-center shadow-2xl">
+                  <div className="text-6xl mb-4">🤖💥</div>
+                  <h2 className="text-2xl font-heading font-bold text-stac-red mb-4">Game Over!</h2>
+                  <p className="text-gray-600 mb-6">{gameOver}</p>
+                  <div className="mb-6">
+                    <div className="text-lg font-semibold text-stac-charcoal">Final Score</div>
+                    <div className="text-3xl font-heading font-bold text-stac-red">{score}</div>
+                    <div className="text-sm text-gray-500">cubes successfully moved</div>
+                  </div>
+                  <button
+                    onClick={handleReset}
+                    className="btn-primary w-full"
+                  >
+                    <RotateCcw size={18} className="mr-2" />
+                    Play Again
+                  </button>
                 </div>
               </div>
             )}

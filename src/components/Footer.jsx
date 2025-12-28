@@ -10,11 +10,6 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <img
-              src="./stac-logo.png"
-              alt="STAC MoldTech"
-              className="h-12 w-auto brightness-0 invert"
-            />
             <p className="text-gray-400 text-sm leading-relaxed">
               Precision Plastic Molding Specialists. Delivering excellence in injection molding, 
               tooling design, and manufacturing solutions for over 50 years.

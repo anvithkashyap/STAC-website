@@ -34,9 +34,9 @@ const Contact = () => {
       icon: MapPin,
       title: 'Visit Us',
       lines: [
-        'STAC MoldTech Facility',
-        'Industrial Area, Bangalore',
-        'Karnataka, India'
+        'STAC MoldTech Private Limited',
+        'Bangalore, Karnataka 560001',
+        'India'
       ]
     },
     {
@@ -159,7 +159,7 @@ const Contact = () => {
       {/* Map Section */}
       <section className="h-96 bg-stac-gray">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248849.84916296526!2d77.49085452149498!3d12.954517008640543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1703123456789!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d77.0785295!3d13.0345096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bafd1dfc9e30227%3A0x8846fd7257632a37!2sSTAC%20MoldTech%20Private%20Limited!5e0!3m2!1sen!2sus!4v1703123456789!5m2!1sen!2sus"
           width="100%"
           height="100%"
           style={{ border: 0 }}

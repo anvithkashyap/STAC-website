@@ -14,7 +14,7 @@ const HeroSection = () => {
       {/* Background with overlay */}
       <div className="absolute inset-0">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-stac-red"
           style={{
             backgroundImage: 'url(./stac-office.png)',
           }}
@@ -23,31 +23,14 @@ const HeroSection = () => {
         
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-stac-orange/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
         </div>
 
-        {/* Grid pattern overlay */}
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}
-        />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container-custom text-center text-white">
         <div className="max-w-4xl mx-auto">
-          <div className="animate-fade-in">
-            <img
-              src="./stac-logo.png"
-              alt="STAC"
-              className="h-20 md:h-28 w-auto mx-auto mb-8 brightness-0 invert"
-            />
-          </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 animate-slide-up">
             PRECISION PLASTIC
