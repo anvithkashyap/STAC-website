@@ -54,33 +54,30 @@ const Header = () => {
                 key={link.path}
                 to={link.path}
                 className={`font-heading font-semibold text-sm uppercase tracking-wider transition-colors duration-300 relative group ${
-                  isScrolled || location.pathname !== '/'
+                  isScrolled
                     ? isActive(link.path)
-                      ? 'text-stac-red'
-                      : 'text-stac-charcoal hover:text-stac-red'
+                      ? 'text-stac-blue'
+                      : 'text-stac-charcoal hover:text-stac-blue'
                     : isActive(link.path)
-                    ? 'text-stac-red'
-                    : 'text-white hover:text-stac-red-light'
+                    ? 'text-stac-blue-light'
+                    : 'text-white hover:text-stac-blue-light'
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-stac-red transition-all duration-300 ${
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-stac-blue transition-all duration-300 ${
                     isActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 />
               </Link>
             ))}
-            <Link to="/contact" className="btn-primary">
-              Get a Quote
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`lg:hidden p-2 transition-colors ${
-              isScrolled || location.pathname !== '/'
+              isScrolled
                 ? 'text-stac-charcoal'
                 : 'text-white'
             }`}
@@ -103,18 +100,13 @@ const Header = () => {
                 to={link.path}
                 className={`block px-6 py-2 font-heading font-semibold text-sm uppercase tracking-wider transition-colors ${
                   isActive(link.path)
-                    ? 'text-stac-red bg-stac-gray'
-                    : 'text-stac-charcoal hover:text-stac-red hover:bg-stac-gray'
+                    ? 'text-stac-blue bg-stac-gray'
+                    : 'text-stac-charcoal hover:text-stac-blue hover:bg-stac-gray'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="px-6 pt-2">
-              <Link to="/contact" className="btn-primary w-full text-center">
-                Get a Quote
-              </Link>
-            </div>
           </div>
         </div>
       </div>

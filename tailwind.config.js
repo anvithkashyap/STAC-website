@@ -15,6 +15,9 @@ export default {
         'stac-charcoal': '#2D2D2D',
         'stac-gray': '#F5F5F5',
         'stac-gray-dark': '#E0E0E0',
+        'stac-blue': '#1E88E5',
+        'stac-blue-dark': '#1565C0',
+        'stac-blue-light': '#42A5F5',
       },
       fontFamily: {
         'heading': ['Montserrat', 'sans-serif'],

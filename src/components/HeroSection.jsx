@@ -47,7 +47,7 @@ const HeroSection = () => {
               Explore Services
             </Link>
             <Link to="/contact" className="btn-primary bg-stac-orange hover:bg-orange-600">
-              Get a Quote
+              Contact Us
             </Link>
           </div>
         </div>

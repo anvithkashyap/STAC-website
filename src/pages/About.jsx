@@ -80,29 +80,49 @@ const About = () => {
 
   const timeline = [
     {
-      year: '1970s',
+      year: '1992',
       title: 'Foundation',
-      description: 'STAC was established with a vision to deliver precision plastic molding solutions.'
+      description: 'STAC began its journey with humble beginnings in a 380 sq.ft. rented shed, driven by a passion for precision manufacturing.'
     },
     {
-      year: '1990s',
-      title: 'Expansion',
-      description: 'Expanded operations with new machinery and increased production capacity.'
+      year: '2005-06',
+      title: 'New Integrated Facility',
+      description: 'Established a new integrated facility spanning 5,000 sq.ft., combining tool room and production capabilities under one roof.'
     },
     {
-      year: '2000s',
-      title: 'ISO Certification',
-      description: 'Achieved ISO 9001 certification, cementing our commitment to quality.'
+      year: '2007-08',
+      title: 'ISO 9001 Certification',
+      description: 'Achieved ISO 9001 certification, marking our commitment to international quality standards and process excellence.'
     },
     {
-      year: '2010s',
-      title: 'Modernization',
-      description: 'Invested in state-of-the-art CNC machines and automation systems.'
+      year: '2011',
+      title: 'Revenue Milestone',
+      description: 'Doubled our sales revenue from ₹1.5 Cr to ₹3 Cr, reflecting growing customer trust and market expansion.'
     },
     {
-      year: 'Today',
-      title: 'Industry Leader',
-      description: 'Recognized as a leading precision molding specialist serving global clients.'
+      year: '2013',
+      title: 'New Plant at Kunigal',
+      description: 'Inaugurated a new manufacturing plant with over 9,000 sq.ft. at Kunigal to meet increasing production demands.'
+    },
+    {
+      year: '2016-17',
+      title: 'Turnover Milestone',
+      description: 'Achieved a significant turnover of ₹5 Cr INR, establishing STAC as a trusted name in the industry.'
+    },
+    {
+      year: '2022',
+      title: '30th Anniversary',
+      description: 'Celebrated our 30th anniversary on November 13th, commemorating three decades of precision engineering excellence.'
+    },
+    {
+      year: '2023',
+      title: 'Corporate Transformation',
+      description: 'Transformed into STAC MoldTech Private Limited on April 22nd, marking a new chapter in our corporate journey.'
+    },
+    {
+      year: '2024-25',
+      title: 'Future Expansion',
+      description: 'Embarking on an ambitious expansion project, growing our plant capacity from 9,000 sq.ft. to over 24,500 sq.ft.'
     }
   ]
 
@@ -150,7 +170,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll">
               <img
-                src="/Images/stac-office.png"
+                src="./Images/stac-office.png"
                 alt="STAC MoldTech Facility"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"
@@ -309,7 +329,7 @@ const About = () => {
 
             <div className="animate-on-scroll">
               <img
-                src="/Images/stac-office-staff.png"
+                src="./Images/stac-office-staff.png"
                 alt="STAC MoldTech Team"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"

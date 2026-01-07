@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -7,6 +7,17 @@ import About from './pages/About'
 import Services from './pages/Services'
 import Interactive from './pages/Interactive'
 import Contact from './pages/Contact'
+
+// Scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  
+  return null
+}
 
 function App() {
   useEffect(() => {
@@ -32,6 +43,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">

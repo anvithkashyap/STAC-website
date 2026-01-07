@@ -45,7 +45,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-stac-red text-stac-red font-heading font-semibold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:bg-stac-red hover:text-white;
+    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-stac-blue text-stac-blue font-heading font-semibold text-sm uppercase tracking-wider rounded-sm transition-all duration-300 hover:bg-stac-blue hover:text-white;
   }
 
   .btn-outline-white {

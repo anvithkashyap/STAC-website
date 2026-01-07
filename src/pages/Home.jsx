@@ -206,7 +206,7 @@ const Home = () => {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center space-x-2">
-                    <CheckCircle size={20} className="text-stac-red flex-shrink-0" />
+                    <CheckCircle size={20} className="text-stac-blue flex-shrink-0" />
                     <span className="text-sm font-medium text-stac-charcoal">{feature}</span>
                   </div>
                 ))}
@@ -243,8 +243,8 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-20 bg-stac-charcoal relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-stac-red/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-stac-red/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-stac-blue/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-stac-blue/10 rounded-full blur-3xl" />
         </div>
         
         <div className="container-custom relative z-10 text-center">
@@ -258,7 +258,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/contact" className="btn-primary bg-stac-red hover:bg-stac-red-light">
-                Get a Free Quote
+                Contact Us
               </Link>
               <Link to="/interactive" className="btn-outline-white">
                 Try Our Interactive Demo

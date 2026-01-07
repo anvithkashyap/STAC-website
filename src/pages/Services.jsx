@@ -293,11 +293,11 @@ const Services = () => {
               Ready to Start Your Project?
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              Contact us today to discuss your requirements and get a customized quote.
+              Contact us today to discuss your requirements.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/contact" className="btn-primary bg-stac-red hover:bg-stac-red-light">
-                Request a Quote
+                Contact Us
                 <ArrowRight size={18} className="ml-2" />
               </Link>
               <Link to="/interactive" className="btn-outline-white">

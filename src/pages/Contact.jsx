@@ -94,7 +94,8 @@ const Contact = () => {
             </h1>
             <p className="text-xl text-white/80 animate-slide-up" style={{ animationDelay: '0.2s' }}>
               Have a project in mind? We'd love to hear from you. 
-              Send us a message and we'll respond as soon as possible.
+              Send us a message and we'll respond as soon as possible. 
+              For quotations and pricing inquiries, please reach out to us directly.
             </p>
           </div>
         </div>
@@ -125,8 +126,8 @@ const Contact = () => {
                   className="animate-on-scroll bg-stac-gray rounded-lg p-6"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-stac-red/10 flex items-center justify-center flex-shrink-0">
-                      <info.icon size={24} className="text-stac-red" />
+                    <div className="w-12 h-12 rounded-lg bg-stac-blue/10 flex items-center justify-center flex-shrink-0">
+                      <info.icon size={24} className="text-stac-blue" />
                     </div>
                     <div>
                       <h3 className="font-heading font-bold text-lg text-stac-charcoal mb-2">
@@ -137,7 +138,7 @@ const Contact = () => {
                           <a
                             key={idx}
                             href={`${info.linkType}:${line.replace(/\s/g, '')}`}
-                            className="block text-gray-600 hover:text-stac-red transition-colors text-sm"
+                            className="block text-gray-600 hover:text-stac-blue transition-colors text-sm"
                           >
                             {line}
                           </a>
