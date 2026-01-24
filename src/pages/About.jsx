@@ -170,7 +170,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll">
               <img
-                src="./Images/stac-office.png"
+                src="./images/facility-1.jpg"
                 alt="STAC MoldTech Facility"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"
@@ -295,6 +295,42 @@ const About = () => {
         </div>
       </section>
 
+      {/* Facility Gallery */}
+      <section className="section-padding bg-stac-gray">
+        <div className="container-custom">
+          <div className="text-center mb-16 animate-on-scroll">
+            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+              Our Facility
+            </span>
+            <h2 className="section-title">Manufacturing Excellence</h2>
+            <p className="section-subtitle mx-auto">
+              A glimpse into our state-of-the-art manufacturing facility at Kunigal.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { src: './images/facility-1.jpg', alt: 'STAC Manufacturing Floor' },
+              { src: './images/facility-2.jpg', alt: 'Injection Molding Machines' },
+              { src: './images/facility-3.jpg', alt: 'Quality Control Area' },
+              { src: './images/facility-4.jpg', alt: 'Tool Room' }
+            ].map((image, index) => (
+              <div 
+                key={index}
+                className="animate-on-scroll overflow-hidden rounded-lg shadow-lg group"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Team Section */}
       <section className="section-padding bg-stac-charcoal text-white">
         <div className="container-custom">
@@ -329,7 +365,7 @@ const About = () => {
 
             <div className="animate-on-scroll">
               <img
-                src="./Images/stac-office-staff.png"
+                src="./images/facility-2.jpg"
                 alt="STAC MoldTech Team"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"
