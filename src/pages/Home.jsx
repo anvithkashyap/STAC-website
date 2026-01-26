@@ -100,7 +100,7 @@ const Home = () => {
   ]
 
   const stats = [
-    { number: 50, suffix: '+', label: 'Years Experience', icon: Clock },
+    { number: 30, suffix: '+', label: 'Years Experience', icon: Clock },
     { number: 500, suffix: '+', label: 'Projects Completed', icon: Award },
     { number: 100, suffix: '+', label: 'Happy Clients', icon: Users },
     { number: 99, suffix: '%', label: 'Quality Rate', icon: CheckCircle }
@@ -231,7 +231,7 @@ const Home = () => {
               {/* Floating accent */}
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-stac-red rounded-lg flex items-center justify-center shadow-xl">
                 <div className="text-center text-white">
-                  <div className="text-3xl font-bold">50+</div>
+                  <div className="text-3xl font-bold">30+</div>
                   <div className="text-xs uppercase tracking-wider">Years</div>
                 </div>
               </div>
@@ -260,8 +260,8 @@ const Home = () => {
               <Link to="/contact" className="btn-primary bg-stac-red hover:bg-stac-red-light">
                 Contact Us
               </Link>
-              <Link to="/interactive" className="btn-outline-white">
-                Try Our Interactive Demo
+              <Link to="/services" className="btn-outline-white">
+                Explore Services
               </Link>
             </div>
           </div>

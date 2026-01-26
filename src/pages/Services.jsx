@@ -300,8 +300,8 @@ const Services = () => {
                 Contact Us
                 <ArrowRight size={18} className="ml-2" />
               </Link>
-              <Link to="/interactive" className="btn-outline-white">
-                Try Interactive Demo
+              <Link to="/about" className="btn-outline-white">
+                About Us
               </Link>
             </div>
           </div>

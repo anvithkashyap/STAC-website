@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="space-y-6">
             <p className="text-gray-400 text-sm leading-relaxed">
               Precision Plastic Molding Specialists. Delivering excellence in injection molding, 
-              tooling design, and manufacturing solutions for over 50 years.
+              tooling design, and manufacturing solutions for over 30 years.
             </p>
             <div className="flex space-x-4">
               <a
@@ -47,7 +47,6 @@ const Footer = () => {
                 { path: '/', label: 'Home' },
                 { path: '/about', label: 'About Us' },
                 { path: '/services', label: 'Services' },
-                { path: '/interactive', label: 'Experience' },
                 { path: '/contact', label: 'Contact' },
               ].map((link) => (
                 <li key={link.path}>
