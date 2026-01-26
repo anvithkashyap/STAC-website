@@ -290,9 +290,8 @@ const Products = () => {
               {filteredProducts.map((product, index) => (
                 <div
                   key={product.id}
-                  className="animate-on-scroll bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
+                  className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
                   onClick={() => openLightbox(product)}
-                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <div className="relative aspect-square overflow-hidden bg-gray-100">
                     <img
