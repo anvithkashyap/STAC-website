@@ -46,7 +46,7 @@ const Products = () => {
       id: 1,
       name: '3D CAD Industrial Contactor',
       category: 'electronics',
-      image: 'Product/3D CAD of industrial electromagnetic contactor.png',
+      image: 'Product/3d_cad_industrial_electromagnetic_contactor.png',
       description: 'Precision 3D CAD design for industrial electromagnetic contactors'
     },
     {
@@ -334,40 +334,6 @@ const Products = () => {
               </button>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Capabilities Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-16 animate-on-scroll">
-            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
-              What We Offer
-            </span>
-            <h2 className="section-title">Our Capabilities</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              { title: 'Design & Development', desc: 'Complete product design and development services' },
-              { title: 'CAD/CAM', desc: 'Computer-aided design and manufacturing' },
-              { title: 'Tool Manufacturing', desc: 'Injection molding tool manufacturing & maintenance' },
-              { title: 'Production & Supply', desc: 'Production and supply of components & products' },
-              { title: 'Best Practices', desc: 'Implementation of best industrial practices' }
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="animate-on-scroll bg-stac-gray rounded-xl p-6 text-center hover:bg-stac-red hover:text-white transition-all duration-300 group"
-              >
-                <h3 className="font-heading font-bold text-lg mb-2 group-hover:text-white">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 group-hover:text-white/80">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
