@@ -170,7 +170,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll">
               <img
-                src="/STAC-website/images/facility-1.jpg"
+                src={`${import.meta.env.BASE_URL}images/facility-1.jpg`}
                 alt="STAC MoldTech Facility"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"
@@ -310,10 +310,10 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { src: "/STAC-website/images/facility-1.jpg", alt: 'STAC Manufacturing Floor' },
-              { src: "/STAC-website/images/facility-2.jpg", alt: 'Injection Molding Machines' },
-              { src: "/STAC-website/images/facility-3.jpg", alt: 'Quality Control Area' },
-              { src: "/STAC-website/images/facility-4.jpg", alt: 'Tool Room' }
+              { src: `${import.meta.env.BASE_URL}images/facility-1.jpg`, alt: 'STAC Manufacturing Floor' },
+              { src: `${import.meta.env.BASE_URL}images/facility-2.jpg`, alt: 'Injection Molding Machines' },
+              { src: `${import.meta.env.BASE_URL}images/facility-3.jpg`, alt: 'Quality Control Area' },
+              { src: `${import.meta.env.BASE_URL}images/facility-4.jpg`, alt: 'Tool Room' }
             ].map((image, index) => (
               <div 
                 key={index}
@@ -365,7 +365,7 @@ const About = () => {
 
             <div className="animate-on-scroll">
               <img
-                src="/STAC-website/images/facility-2.jpg"
+                src={`${import.meta.env.BASE_URL}images/facility-2.jpg`}
                 alt="STAC MoldTech Team"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"
