@@ -151,16 +151,15 @@ const Services = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-stac-charcoal to-stac-red-dark relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+      <section className="pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute inset-0">
           <div 
-            className="absolute inset-0"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-stac-red"
             style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-              backgroundSize: '50px 50px'
+              backgroundImage: 'url(./stac-office.png)',
             }}
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-stac-red/95 via-stac-red-dark/90 to-stac-charcoal/95" />
         </div>
         
         <div className="container-custom relative z-10">
