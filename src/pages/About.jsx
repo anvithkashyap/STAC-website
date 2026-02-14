@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -10,12 +10,94 @@ import {
   Users, 
   Leaf,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  Building2,
+  Cog,
+  Warehouse,
+  Sun,
+  Droplets,
+  TreePine
 } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const About = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
+  const testimonials = [
+    {
+      quote: "STAC - A Legacy business partner of over 30 Years!! STAC has been our trusted business partner and one-stop solution for delivering high-precision, intricate components with an unwavering commitment to excellence. What sets STAC apart? Right First Time (RFT) quality, Affordable solutions without compromising on accuracy, Short lead times that keep our projects on track. When it comes to reliability, craftsmanship, and speed — STAC delivers every time.",
+      name: "C.P. Navneeth Kumar",
+      title: "Executive Advisor",
+      company: "MAL Group"
+    },
+    {
+      quote: "STAC is an excellent Company with matured management & technical Team. This company is a one stop solution for critical plastic parts design & Manufacturing. Quality of Moulds/Plastic parts produced are in Par with best in automotive industry.",
+      name: "Ganesh Naidu GN",
+      title: "General Manager - Cable Technology",
+      company: "Suprajit Automotive Private Limited"
+    },
+    {
+      quote: "We've been working with the STAC MoldTech Private Limited for several years, and their commitment to excellence has been outstanding. Their precision in plastic parts tooling & manufacturing, top-notch setup, and consistent on-time delivery make them a reliable partner. Their collaborative approach and eagerness to go the extra mile for customer satisfaction truly set them apart.",
+      name: "Vaibhav Deshmukh",
+      title: "Engineering Manager",
+      company: "Medical Gas Solutions (MGS) Division"
+    },
+    {
+      quote: "We, Cummins Generator Technologies India Pvt. Ltd. (CGT India) have the privilege of working with STAC for over 30 years, and their partnership has been nothing short of exceptional. Throughout our association, they have consistently delivered excellent service, demonstrating a deep understanding of our business needs and operational goals.",
+      name: "Dinesh S Zapake",
+      title: "Operations Leader",
+      company: "CGT India, Cummins Inc."
+    },
+    {
+      quote: "We have been associated with STAC for more than 15 years now and value their consistent quality, reliability, and support. Their team is responsive, technically sound especially in tool building and committed to excellence, making them a trusted and long-term partner in our supply chain.",
+      name: "S. Mahesh Hegde",
+      title: "VP-Operations",
+      company: "Suprajit Automotive Private Limited"
+    },
+    {
+      quote: "It is a great experience working with your company. Till date there are billions of plastic parts supplied from your company that are running on our customer car brands like BMW Group, VW Group, Renault, Nissan, Suzuki & many more world class automotive companies. The quality of your parts & moulding tools is great.",
+      name: "Ravi A G",
+      title: "Plant Head",
+      company: "Suprajit Automotive Private Limited"
+    }
+  ]
+
+  const engineeringPlastics = [
+    'Nylon 66 33% GF - Zytel 70G33I BK031 from Celanese',
+    'Nylon 66 UF - Zytel 101 LBK from Celanese',
+    'Nylon 66 GF 30% - Zytel 70G30HSL BK from Celanese',
+    'POM - Delrin 500P BK from Dupont',
+    'Nylon 6 30% GF - Akulon K224 HG6 from DSM Polymers',
+    'Nylon 66 UF - Zytel MT409AHS from Celanese',
+    'ABS FR AN450N from Bhansali Polymers',
+    'Nylon 66 25% FR - Zytel FR50 BK505 from Celanese',
+    'PP GF 30% - Thermofil GPP 1630 from Sumika Polymers',
+    'ABS-PC Blend - Cycoly C1200HF-1001 from Sabic Engineering Polymers',
+    'Nylon 66 Carbon + Glass fiber filled - RTP 299 X 131721 BLK from RTP Singapore',
+    'Antimicrobial additive - Biomaster 966 from Admaster UK',
+    'PPS GF 40% - Torelina A504X90 from Toray Industries, Japan',
+    'PPA 33%GF - Amodel AS-4133 L from Solvay Speciality Polymers, USA'
+  ]
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    }, 8000)
+    return () => clearInterval(interval)
+  }, [testimonials.length])
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray('.animate-on-scroll').forEach((element) => {
@@ -366,6 +448,197 @@ const About = () => {
               <img
                 src={`${import.meta.env.BASE_URL}images/facility-2.jpg`}
                 alt="STAC MoldTech Team"
+                className="rounded-lg shadow-2xl w-full"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Testimonials Carousel */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-12 animate-on-scroll">
+            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+              Testimonials
+            </span>
+            <h2 className="section-title">What Our Customers Say</h2>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            <div className="bg-stac-gray rounded-2xl p-8 md:p-12 relative overflow-hidden">
+              <Quote size={60} className="absolute top-6 left-6 text-stac-red/10" />
+              
+              <div className="relative z-10">
+                <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8 italic">
+                  "{testimonials[currentTestimonial].quote}"
+                </p>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-heading font-bold text-stac-charcoal text-lg">
+                      {testimonials[currentTestimonial].name}
+                    </h4>
+                    <p className="text-gray-600 text-sm">
+                      {testimonials[currentTestimonial].title}
+                    </p>
+                    <p className="text-stac-red font-semibold text-sm">
+                      {testimonials[currentTestimonial].company}
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={prevTestimonial}
+                      className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-stac-red hover:text-white transition-colors"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      onClick={nextTestimonial}
+                      className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-stac-red hover:text-white transition-colors"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Dots indicator */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentTestimonial ? 'bg-stac-red' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Future Expansion Section */}
+      <section className="section-padding bg-stac-charcoal text-white">
+        <div className="container-custom">
+          <div className="text-center mb-16 animate-on-scroll">
+            <span className="text-stac-orange font-semibold uppercase tracking-wider text-sm mb-4 block">
+              Growth & Expansion
+            </span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold">Future Ready</h2>
+            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+              Investing in tomorrow with expanded facilities, new equipment, and enhanced capabilities.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="animate-on-scroll bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-colors">
+              <div className="w-14 h-14 rounded-lg bg-stac-red/20 flex items-center justify-center mb-6">
+                <Building2 size={28} className="text-stac-orange" />
+              </div>
+              <h3 className="font-heading font-bold text-xl mb-4">New Building</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                The new building, adjacent to our existing shopfloor, is completed and partially operational. 
+                13,200 sq.ft. of floor space on the ground floor with goods lift for easy material movement 
+                and about 11,300 sq.ft. on the Mezzanine, 1st & 2nd Floors with a passenger lift for staff.
+              </p>
+            </div>
+
+            <div className="animate-on-scroll bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-colors">
+              <div className="w-14 h-14 rounded-lg bg-stac-red/20 flex items-center justify-center mb-6">
+                <Cog size={28} className="text-stac-orange" />
+              </div>
+              <h3 className="font-heading font-bold text-xl mb-4">New Equipment</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                STAC has a planned expansion program split over multiple phases over the next 2 years to add 
+                new equipment as per customer/project requirements. These include equipment for production, 
+                vertical and horizontal injection moulding machines, automation, inspection, toolroom machineries.
+              </p>
+            </div>
+
+            <div className="animate-on-scroll bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-colors">
+              <div className="w-14 h-14 rounded-lg bg-stac-red/20 flex items-center justify-center mb-6">
+                <Warehouse size={28} className="text-stac-orange" />
+              </div>
+              <h3 className="font-heading font-bold text-xl mb-4">New Facilities</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Ground floor includes Moulding Shop-Floor, Inspection, Tool Room, Goods Loading/Unloading area, 
+                Raw Material & FG storage, Packing Area & Reception. Upper floors house Assembly Section, 
+                Office Spaces, Training room, Conferencing Facilities, and UV curing area.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Engineering Plastics Section */}
+      <section className="section-padding bg-stac-gray">
+        <div className="container-custom">
+          <div className="text-center mb-12 animate-on-scroll">
+            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+              Materials Expertise
+            </span>
+            <h2 className="section-title">Engineering Plastics Processed at STAC</h2>
+            <p className="section-subtitle mx-auto">
+              We work with a wide range of high-performance engineering plastics from leading global suppliers.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            {engineeringPlastics.map((plastic, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow flex items-start space-x-3"
+              >
+                <CheckCircle size={18} className="text-stac-red flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700 text-sm">{plastic}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Environment Consciousness Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-on-scroll">
+              <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+                Sustainability
+              </span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-stac-charcoal mb-6">
+                Environment Consciousness
+              </h2>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                At STAC, we are committed to sustainable manufacturing practices and reducing our environmental footprint. 
+                Our initiatives reflect our dedication to a greener future.
+              </p>
+
+              <div className="space-y-4">
+                {[
+                  { icon: Sun, text: 'Planning to install 135 KVA Solar roof top panels' },
+                  { icon: Leaf, text: 'Environmentally friendly plant operations' },
+                  { icon: Droplets, text: 'Rain water harvesting system installed' },
+                  { icon: TreePine, text: 'Supporting the GREEN revolution with lush green lung space in our premises' }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center space-x-4 p-4 bg-stac-gray rounded-lg">
+                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={20} className="text-green-600" />
+                    </div>
+                    <span className="text-gray-700">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="animate-on-scroll">
+              <img
+                src={`${import.meta.env.BASE_URL}images/facility-3.jpg`}
+                alt="STAC Green Initiative"
                 className="rounded-lg shadow-2xl w-full"
                 loading="lazy"
               />
