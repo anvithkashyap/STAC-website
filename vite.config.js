@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/STAC-website/',
+  base: process.env.VERCEL ? '/' : '/STAC-website/',
   build: {
     outDir: 'dist',
     sourcemap: false,
