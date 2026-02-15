@@ -277,7 +277,7 @@ const Home = () => {
                 <img
                   src={`${import.meta.env.BASE_URL}images/${client.src}`}
                   alt={client.alt}
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  className="max-h-full max-w-full object-contain"
                   loading="lazy"
                 />
               </div>
