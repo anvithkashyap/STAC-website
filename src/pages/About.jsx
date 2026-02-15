@@ -412,6 +412,59 @@ const About = () => {
         </div>
       </section>
 
+      {/* ISO Certification Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-on-scroll">
+              <img
+                src={`${import.meta.env.BASE_URL}images/iso/42518967-ebfe-4cbd-82f0-99ef006c8df4.png`}
+                alt="ISO 9001:2015 Certificate"
+                className="rounded-lg shadow-2xl w-full max-w-md mx-auto"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="animate-on-scroll">
+              <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+                Quality Assurance
+              </span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-stac-charcoal mb-6">
+                ISO Certified Excellence
+              </h2>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                STAC is ISO certified since 2007, demonstrating our unwavering commitment to 
+                quality management and continuous improvement in all our processes.
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start space-x-3 p-4 bg-stac-gray rounded-lg">
+                  <CheckCircle size={20} className="text-stac-red flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-stac-charcoal">ISO 9001:2015 Certified</h4>
+                    <p className="text-sm text-gray-600">Quality Management System certification by TÜV NORD</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3 p-4 bg-stac-gray rounded-lg">
+                  <CheckCircle size={20} className="text-stac-red flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-stac-charcoal">IATF 16949:2016 Program</h4>
+                    <p className="text-sm text-gray-600">Automotive Quality Management System program started, planning certification audit in next 6 months</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3 p-4 bg-stac-gray rounded-lg">
+                  <CheckCircle size={20} className="text-stac-red flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-stac-charcoal">Precision Manufacturing</h4>
+                    <p className="text-sm text-gray-600">Manufacture and Supply of Precision Plastic Injection Moulded Components and Assemblies</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Team Section */}
       <section className="section-padding bg-stac-charcoal text-white">
         <div className="container-custom">

@@ -240,6 +240,52 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Our Customers Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-12 animate-on-scroll">
+            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+              Trusted Partners
+            </span>
+            <h2 className="section-title">Our Customers</h2>
+            <p className="section-subtitle mx-auto">
+              A healthy mix of customers from different business verticals
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center">
+            {[
+              { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Cummins' },
+              { src: 'clients/704f063d-2472-43ba-8723-4b2a5571a320.png', alt: 'Atlas Copco' },
+              { src: 'clients/568449ed-637c-4506-afe0-6e8d9450a0ae.png', alt: 'JVS Electronics' },
+              { src: 'clients/191eed1f-896a-4c40-b5f7-1e01b828a86b.png', alt: 'Meccalte' },
+              { src: 'clients/06764d69-c31c-4901-b729-d79dbd60aeba.png', alt: 'Edgar Interactive' },
+              { src: 'clients/3f4f1ae0-2486-451d-af59-3950a0a5c1e0.png', alt: 'Nandi Powertronics' },
+              { src: 'clients/2fffab9e-0a18-4275-97c6-638a11d43bc0.png', alt: 'Client' },
+              { src: 'clients/c267d734-0124-42a6-a8fd-4e9f9a40ad1e.png', alt: 'Jay Group' },
+              { src: 'clients/67b33ab9-e6a6-4c0d-a7d0-0d0795ff1b55.png', alt: 'Filcomps' },
+              { src: 'clients/9c29cf20-d866-485f-b561-c800b406aabf.png', alt: 'Kemet' },
+              { src: 'clients/e3ad83d8-d93b-469e-bd68-99595629eb76.png', alt: 'IIP' },
+              { src: 'clients/234c37cf-1902-4ae5-8ee3-fb2e994463d7.png', alt: 'Godrej' },
+              { src: 'clients/8ba74434-33c8-4cf1-9b34-1adaa74c5d50.png', alt: 'India Packaging Products' },
+              { src: 'clients/fdd12794-2b48-44da-bde9-66768e21dee5.png', alt: 'Suprajit' }
+            ].map((client, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-lg p-4 flex items-center justify-center h-20 hover:shadow-lg transition-shadow"
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}images/${client.src}`}
+                  alt={client.alt}
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-stac-charcoal relative overflow-hidden">
         <div className="absolute inset-0">
