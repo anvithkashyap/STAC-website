@@ -206,11 +206,11 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="animate-on-scroll bg-stac-gray rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                className="animate-on-scroll bg-stac-gray rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-auto"
               >
                 <div className="p-6">
                   <div className="flex items-start space-x-4 mb-4">
