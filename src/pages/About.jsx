@@ -267,7 +267,7 @@ const About = () => {
                   <h3 className="font-heading font-bold text-2xl text-stac-charcoal">Our Mission</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  STAC is moulded to <span className="italic font-semibold text-stac-red">"exceed Customer Delight"</span>
+                  At STAC, we are moulded to <span className="italic font-semibold text-stac-red">"exceed Customer Delight"</span> — delivering beyond expectations in every project we undertake.
                 </p>
               </div>
 
@@ -279,7 +279,7 @@ const About = () => {
                   <h3 className="font-heading font-bold text-2xl text-stac-charcoal">Our Vision</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  <span className="font-semibold text-stac-red">"SMART</span> team effort" and "delighted customers" paving our path to the summit of excellence in products, services, and inclusive growth.
+                  Through <span className="font-semibold text-stac-red">"SMART</span> team effort" and "delighted customers," we pave our path to the summit of excellence in products, services, and inclusive growth.
                 </p>
               </div>
 
