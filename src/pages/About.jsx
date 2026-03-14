@@ -26,6 +26,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const About = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const testimonials = [
     {
@@ -91,12 +92,33 @@ const About = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
 
+  const carouselImages = [
+    '1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', 
+    '6.jpeg', '7.jpeg', '8.jpeg', '9.jpeg', '10.jpeg',
+    '11.jpeg', '12.jpeg', '13.jpeg'
+  ]
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
     }, 8000)
     return () => clearInterval(interval)
   }, [testimonials.length])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [carouselImages.length])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -455,6 +477,76 @@ const About = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Image Carousel Section */}
+      <section className="section-padding bg-stac-gray">
+        <div className="container-custom">
+          <div className="text-center mb-12 animate-on-scroll">
+            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
+              Our Facility
+            </span>
+            <h2 className="section-title">Gallery</h2>
+            <p className="section-subtitle mx-auto">
+              A glimpse into our state-of-the-art manufacturing facility
+            </p>
+          </div>
+
+          <div className="relative max-w-5xl mx-auto">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src={`${import.meta.env.BASE_URL}images/Carasol photos/${carouselImages[currentImageIndex]}`}
+                alt={`Facility ${currentImageIndex + 1}`}
+                className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
+                loading="lazy"
+              />
+              
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-all hover:scale-110"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={24} className="text-stac-charcoal" />
+              </button>
+              
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-all hover:scale-110"
+                aria-label="Next image"
+              >
+                <ChevronRight size={24} className="text-stac-charcoal" />
+              </button>
+
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stac-charcoal/80 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                {currentImageIndex + 1} / {carouselImages.length}
+              </div>
+            </div>
+
+            {/* Thumbnail Navigation */}
+            <div className="flex justify-center gap-2 mt-6 overflow-x-auto pb-2">
+              {carouselImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                    currentImageIndex === index 
+                      ? 'border-stac-red scale-110' 
+                      : 'border-transparent opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/Carasol photos/${image}`}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
             </div>
           </div>
         </div>
