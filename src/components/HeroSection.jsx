@@ -28,18 +28,16 @@ const HeroSection = () => {
 
       </div>
 
-      {/* Company Name Banner */}
-      <div className="absolute top-20 left-0 right-0 z-20 bg-white py-4 animate-slide-up">
-        <div className="container-custom text-center">
-          <p className="text-xl md:text-2xl lg:text-3xl font-nyala">
-            <span className="text-stac-red font-bold">STAC</span> <span className="text-stac-blue">MoldTech Private Limited</span>
-          </p>
-        </div>
-      </div>
-
       {/* Content */}
-      <div className="relative z-10 container-custom text-center text-white pt-8">
+      <div className="relative z-10 container-custom text-center text-white">
         <div className="max-w-4xl mx-auto">
+          
+          {/* Company Name Banner */}
+          <div className="bg-white py-3 px-6 mb-6 animate-slide-up -mx-4 sm:-mx-6 lg:-mx-8" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}>
+            <p className="text-xl md:text-2xl lg:text-3xl font-nyala">
+              <span className="text-stac-red font-bold">STAC</span> <span className="text-stac-blue">MoldTech Private Limited</span>
+            </p>
+          </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
             PRECISION PLASTIC
