@@ -552,6 +552,32 @@ const About = () => {
         </div>
       </section>
 
+      {/* Memorial Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12 animate-on-scroll">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-stac-charcoal mb-4">
+                Remembering Late Sri. Chandrashekar C V
+              </h2>
+            </div>
+
+            <div className="animate-on-scroll">
+              <div className="bg-stac-gray rounded-2xl p-8 md:p-12 shadow-xl">
+                <div className="flex justify-center">
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/Remember.jpeg`}
+                    alt="Late Sri. Chandrashekar C V"
+                    className="rounded-lg shadow-2xl max-w-full h-auto"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Team Section */}
       <section className="section-padding bg-stac-charcoal text-white">
         <div className="container-custom">
