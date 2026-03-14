@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -12,12 +12,15 @@ import {
   Settings,
   Truck,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
+  ChevronDown
 } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const Services = () => {
+  const [expandedCard, setExpandedCard] = useState(null)
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray('.animate-on-scroll').forEach((element) => {
@@ -40,101 +43,113 @@ const Services = () => {
     return () => ctx.revert()
   }, [])
 
+  const toggleCard = (index) => {
+    setExpandedCard(expandedCard === index ? null : index)
+  }
+
   const services = [
     {
       icon: Factory,
-      title: 'Injection Molding',
-      description: 'High-precision injection molding services using state-of-the-art machinery. We handle projects of all sizes, from prototypes to high-volume production runs.',
-      features: [
-        'Multi-cavity molds',
-        'Insert molding',
-        'Overmolding',
-        'Micro-molding capabilities',
-        'High-volume production'
+      title: 'Injection Moulding',
+      summary: 'High-precision injection molding services using state-of-the-art machinery for projects of all sizes.',
+      details: [
+        'State-of-the-art machinery designed for accuracy, consistency, and efficiency',
+        'Support for prototypes to large-scale, high-volume manufacturing runs',
+        'Multi-cavity molds for simultaneous production of multiple components',
+        'Insert molding to integrate metal or other components directly into plastic parts',
+        'Over molding for enhanced functionality and durability',
+        'Micro-molding capabilities for extremely small and intricate components'
       ]
     },
     {
       icon: Wrench,
       title: 'Tool Design & Engineering',
-      description: 'Expert mold design and engineering services. Our team creates optimized tooling solutions that maximize efficiency and part quality.',
-      features: [
-        'CAD/CAM design',
-        '3D modeling & simulation',
-        'DFM analysis',
-        'Prototype tooling',
-        'Production tooling'
+      summary: 'Expert mold design and engineering services focused on optimized tooling solutions.',
+      details: [
+        'Advanced CAD/CAM design technologies for highly accurate mold structures',
+        'Detailed 3D modeling and simulation to visualize mold performance',
+        'Design for Manufacturing (DFM) analysis for cost-effectiveness and durability',
+        'Prototype tooling for testing and validation of product concepts',
+        'Production tooling for consistent, high-volume manufacturing',
+        'Superior dimensional accuracy and performance'
       ]
     },
     {
       icon: Cog,
       title: 'Precision Tooling',
-      description: 'Advanced tooling solutions with tight tolerances for complex manufacturing needs. We specialize in intricate geometries and demanding specifications.',
-      features: [
-        'CNC machining',
-        'EDM services',
-        'Tight tolerance work',
-        'Complex geometries',
-        'Tool maintenance'
+      summary: 'Advanced tooling solutions for complex manufacturing with precision and tight tolerances.',
+      details: [
+        'Advanced CNC machining for highly accurate components',
+        'EDM (Electrical Discharge Machining) for intricate shapes and fine details',
+        'Tight tolerance work ensuring strict dimensional specifications',
+        'Specialization in complex geometries for demanding applications',
+        'Comprehensive tool maintenance to extend tool life',
+        'Reliable performance throughout repeated production cycles'
       ]
     },
     {
       icon: Package,
       title: 'Assembly Services',
-      description: 'Complete assembly and packaging solutions to streamline your supply chain. From simple assemblies to complex multi-component products.',
-      features: [
-        'Sub-assembly',
-        'Final assembly',
-        'Packaging solutions',
-        'Kitting services',
-        'Custom labeling'
+      summary: 'Complete assembly and packaging solutions to streamline your supply chain.',
+      details: [
+        'Sub-assembly processes for pre-assembled components',
+        'Final assembly ensuring accurate integration into finished products',
+        'Comprehensive packaging solutions for storage and transportation',
+        'Kitting services organizing components into ready-to-use sets',
+        'Custom labeling for clear identification and traceability',
+        'Support from simple assemblies to complex multi-component products'
       ]
     },
     {
       icon: Microscope,
       title: 'Quality Testing',
-      description: 'Rigorous quality control and testing protocols ensuring every part meets your specifications. Advanced inspection equipment and documented processes.',
-      features: [
-        'CMM inspection',
-        'First article inspection',
-        'Statistical process control',
-        'Material testing',
-        'Documentation'
+      summary: 'Rigorous quality control and testing protocols ensuring every component meets specifications.',
+      details: [
+        'CMM (Coordinate Measuring Machine) inspection for precise dimensional verification',
+        'First article inspection to validate initial production samples',
+        'Statistical Process Control (SPC) to monitor production data',
+        'Material testing to verify integrity and performance of raw materials',
+        'Detailed documentation ensuring traceability and compliance',
+        'Advanced inspection equipment and well-documented quality procedures'
       ]
     },
     {
       icon: Shield,
       title: 'Quality Assurance',
-      description: 'ISO-certified processes with comprehensive documentation and traceability. We maintain the highest standards throughout production.',
-      features: [
-        'ISO 9001:2015 certified',
-        'Full traceability',
-        'Process validation',
-        'Continuous improvement',
-        'Customer audits welcome'
+      summary: 'ISO-certified processes ensuring consistent quality, reliability, and accountability.',
+      details: [
+        'ISO 9001:2015 certification demonstrating quality management practices',
+        'Full traceability for materials, components, and production steps',
+        'Process validation to confirm consistent results',
+        'Continuous improvement initiatives for efficiency and performance',
+        'Customer audits welcomed with transparency and confidence',
+        'Complete visibility and control across manufacturing process'
       ]
     },
     {
       icon: Settings,
       title: 'Secondary Operations',
-      description: 'Value-added secondary operations to complete your parts. From finishing to decoration, we provide comprehensive solutions.',
-      features: [
-        'Pad printing',
-        'Hot stamping',
-        'Ultrasonic welding',
-        'Heat staking',
-        'Surface finishing'
+      summary: 'Value-added secondary operations to complete molded components.',
+      details: [
+        'Pad printing for precise application of logos and graphics',
+        'Hot stamping for durable decorative finishes',
+        'Ultrasonic welding to securely join plastic components',
+        'Heat staking for reliable assembly with embedded components',
+        'Surface finishing techniques to improve texture and appearance',
+        'Transform raw molded parts into fully finished products'
       ]
     },
     {
       icon: Truck,
-      title: 'Logistics & Fulfillment',
-      description: 'Streamlined logistics and fulfillment services. We manage inventory and shipping to ensure on-time delivery to your facilities.',
-      features: [
-        'Inventory management',
-        'JIT delivery',
-        'Drop shipping',
-        'Global logistics',
-        'Custom packaging'
+      title: 'Logistics & Fulfilment',
+      summary: 'Streamlined logistics and fulfillment services for efficient supply chain management.',
+      details: [
+        'Effective inventory management systems to monitor stock levels',
+        'Just-in-Time (JIT) delivery to reduce storage costs',
+        'Drop shipping services for direct delivery to end users',
+        'Global logistics capabilities for international coordination',
+        'Custom packaging solutions meeting regulatory requirements',
+        'Timely delivery of products to customer facilities'
       ]
     }
   ]
@@ -195,27 +210,46 @@ const Services = () => {
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="animate-on-scroll bg-stac-gray rounded-lg p-8 hover:shadow-xl transition-all duration-300 group"
+                className="animate-on-scroll bg-stac-gray rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="w-16 h-16 rounded-lg bg-stac-red/10 flex items-center justify-center flex-shrink-0 group-hover:bg-stac-red transition-colors duration-300">
-                    <service.icon 
-                      size={32} 
-                      className="text-stac-red group-hover:text-white transition-colors duration-300" 
-                    />
+                <div className="p-6">
+                  <div className="flex items-start space-x-4 mb-4">
+                    <div className="w-14 h-14 rounded-lg bg-stac-red/10 flex items-center justify-center flex-shrink-0">
+                      <service.icon size={28} className="text-stac-red" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-heading font-bold text-xl text-stac-charcoal mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {service.summary}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-heading font-bold text-xl text-stac-charcoal mb-3 group-hover:text-stac-red transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
-                          <CheckCircle size={16} className="text-stac-red flex-shrink-0" />
-                          <span>{feature}</span>
+                  
+                  <button
+                    onClick={() => toggleCard(index)}
+                    className="w-full flex items-center justify-between text-stac-red font-semibold text-sm mt-4 hover:text-stac-red-dark transition-colors"
+                  >
+                    <span>{expandedCard === index ? 'Show Less' : 'Learn More'}</span>
+                    <ChevronDown 
+                      size={20} 
+                      className={`transition-transform duration-300 ${expandedCard === index ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </div>
+
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ${
+                    expandedCard === index ? 'max-h-96' : 'max-h-0'
+                  }`}
+                >
+                  <div className="px-6 pb-6 pt-2 bg-white">
+                    <ul className="space-y-2.5">
+                      {service.details.map((detail, idx) => (
+                        <li key={idx} className="flex items-start space-x-2 text-sm text-gray-700">
+                          <CheckCircle size={16} className="text-stac-red flex-shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">{detail}</span>
                         </li>
                       ))}
                     </ul>
