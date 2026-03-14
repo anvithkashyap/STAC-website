@@ -267,9 +267,7 @@ const About = () => {
                   <h3 className="font-heading font-bold text-2xl text-stac-charcoal">Our Mission</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  To deliver precision plastic molding solutions that exceed expectations, 
-                  combining cutting-edge technology with decades of expertise to help our 
-                  clients succeed in their markets.
+                  STAC is moulded to <span className="italic font-semibold text-stac-red">"exceed Customer Delight"</span>
                 </p>
               </div>
 
@@ -281,9 +279,7 @@ const About = () => {
                   <h3 className="font-heading font-bold text-2xl text-stac-charcoal">Our Vision</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  To be the most trusted name in precision plastic molding, recognized 
-                  globally for our quality, innovation, and commitment to sustainable 
-                  manufacturing practices.
+                  <span className="font-semibold text-stac-red">"SMART</span> team effort" and "delighted customers" paving our path to the summit of excellence in products, services, and inclusive growth.
                 </p>
               </div>
 
@@ -292,11 +288,10 @@ const About = () => {
                   <div className="w-12 h-12 rounded-lg bg-stac-red/10 flex items-center justify-center">
                     <Heart size={24} className="text-stac-red" />
                   </div>
-                  <h3 className="font-heading font-bold text-2xl text-stac-charcoal">Our Promise</h3>
+                  <h3 className="font-heading font-bold text-2xl text-stac-charcoal">Our Motivation</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed">
-                  Every project receives our full attention and expertise. We stand behind 
-                  our work with comprehensive quality guarantees and responsive support.
+                  Quality, Consistency, Commitment
                 </p>
               </div>
             </div>

@@ -32,14 +32,17 @@ const HeroSection = () => {
       <div className="relative z-10 container-custom text-center text-white">
         <div className="max-w-4xl mx-auto">
           
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 animate-slide-up">
+          <p className="text-xl md:text-2xl lg:text-3xl font-heading mb-4 animate-slide-up">
+            <span className="text-stac-red font-bold">STAC</span> <span className="text-stac-blue">MoldTech Private Limited</span>
+          </p>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
             PRECISION PLASTIC
             <span className="block text-stac-orange">MOLDING SPECIALISTS</span>
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Engineering excellence through advanced injection molding, precision tooling, 
-            and innovative manufacturing solutions.
+            Manufacturers of Precision Plastic Injection Moulding Tools, Supply of Precision Injection Moulded Parts and Allied Assemblies.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.4s' }}>
