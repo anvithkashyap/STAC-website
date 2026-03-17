@@ -209,7 +209,7 @@ const Products = () => {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-stac-red"
             style={{
-              backgroundImage: 'url(./stac-office.png)',
+              backgroundImage: `url(${import.meta.env.BASE_URL}stac-office.png)`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-stac-red/95 via-stac-red-dark/90 to-stac-charcoal/95" />
