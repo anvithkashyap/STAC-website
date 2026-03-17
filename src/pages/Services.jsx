@@ -133,7 +133,6 @@ const Services = () => {
       details: [
         'Pad printing for precise application of logos and graphics',
         'Hot stamping for durable decorative finishes',
-        'Ultrasonic welding to securely join plastic components',
         'Heat staking for reliable assembly with embedded components',
         'Surface finishing techniques to improve texture and appearance',
         'Transform raw molded parts into fully finished products'
@@ -159,7 +158,6 @@ const Services = () => {
     'Medical Devices',
     'Consumer Electronics',
     'Industrial Equipment',
-    'Aerospace',
     'Consumer Products'
   ]
 
