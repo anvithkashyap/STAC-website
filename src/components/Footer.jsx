@@ -92,9 +92,9 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="text-stac-blue flex-shrink-0 mt-1" />
                 <span className="text-gray-400 text-sm">
-                  STAC MoldTech Facility<br />
-                  Industrial Area, Bangalore<br />
-                  Karnataka, India
+                  2nd Phase, KIADB Industrial Area,<br />
+                  Plot no 8, Road, Kunigal,<br />
+                  Kallanaikanahalli, Karnataka 572130
                 </span>
               </li>
               <li className="flex items-center space-x-3">
