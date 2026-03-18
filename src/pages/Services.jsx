@@ -259,15 +259,17 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map((industry, index) => (
-              <div 
-                key={index}
-                className="animate-on-scroll bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-colors"
-              >
-                <span className="text-white font-semibold">{industry}</span>
-              </div>
-            ))}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl">
+              {industries.map((industry, index) => (
+                <div 
+                  key={index}
+                  className="animate-on-scroll bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-colors"
+                >
+                  <span className="text-white font-semibold">{industry}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
