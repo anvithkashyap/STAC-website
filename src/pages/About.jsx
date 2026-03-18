@@ -199,19 +199,9 @@ const About = () => {
       description: 'Achieved ISO 9001 certification, marking our commitment to international quality standards and process excellence.'
     },
     {
-      year: '2011',
-      title: 'Revenue Milestone',
-      description: 'Doubled our sales revenue from ₹1.5 Cr to ₹3 Cr, reflecting growing customer trust and market expansion.'
-    },
-    {
       year: '2013',
       title: 'New Plant at Kunigal',
       description: 'Inaugurated a new manufacturing plant with over 9,000 sq.ft. at Kunigal to meet increasing production demands.'
-    },
-    {
-      year: '2016-17',
-      title: 'Turnover Milestone',
-      description: 'Achieved a significant turnover of ₹5 Cr INR, establishing STAC as a trusted name in the industry.'
     },
     {
       year: '2022',
@@ -732,7 +722,7 @@ const About = () => {
               </div>
               <h3 className="font-heading font-bold text-xl mb-4">New Facilities</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Ground floor includes Moulding Shop-Floor, Inspection, Tool Room, Goods Loading/Unloading area, 
+                Ground floor includes Moulding Shop-Floor, Inspection, Tool Room, Goods Receiving and Dispatch area, 
                 Raw Material & FG storage, Packing Area & Reception. Upper floors house Assembly Section, 
                 Office Spaces, Training room, Conferencing Facilities, and UV curing area.
               </p>

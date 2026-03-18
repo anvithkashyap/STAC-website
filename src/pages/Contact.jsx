@@ -35,8 +35,8 @@ const Contact = () => {
       title: 'Visit Us',
       lines: [
         'STAC MoldTech Private Limited',
-        'Bangalore, Karnataka 560001',
-        'India'
+        '2nd Phase, KIADB Industrial Area, Plot no 8, Road,',
+        'Kunigal, Kallanaikanahalli, Karnataka 572130'
       ]
     },
     {
@@ -63,8 +63,7 @@ const Contact = () => {
       icon: Clock,
       title: 'Working Hours',
       lines: [
-        'Monday - Friday: 9:00 AM - 6:00 PM',
-        'Saturday: 9:00 AM - 1:00 PM'
+        'Monday - Saturday 9.00 AM- 6-00 PM'
       ]
     }
   ]

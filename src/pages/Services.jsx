@@ -105,7 +105,7 @@ const Services = () => {
       title: 'Quality Testing',
       summary: 'Rigorous quality control and testing protocols ensuring every component meets specifications.',
       details: [
-        'CMM (Coordinate Measuring Machine) inspection for precise dimensional verification',
+        'VMM (Video Measuring Machine) for precision dimensions measuring and verification',
         'First article inspection to validate initial production samples',
         'Statistical Process Control (SPC) to monitor production data',
         'Material testing to verify integrity and performance of raw materials',
