@@ -51,104 +51,91 @@ const Services = () => {
     {
       icon: Factory,
       title: 'Injection Moulding',
-      summary: 'High-precision injection molding services using state-of-the-art machinery for projects of all sizes.',
+      summary: 'High-precision injection molding services are delivered using state-of-the-art machinery designed to ensure accuracy, consistency, and efficiency across every stage of production.',
       details: [
-        'State-of-the-art machinery designed for accuracy, consistency, and efficiency',
-        'Support for prototypes to large-scale, high-volume manufacturing runs',
-        'Multi-cavity molds for simultaneous production of multiple components',
-        'Insert molding to integrate metal or other components directly into plastic parts',
-        'Over molding for enhanced functionality and durability',
-        'Micro-molding capabilities for extremely small and intricate components'
+        'The process supports projects of all sizes, ranging from early-stage prototypes to large-scale, high-volume manufacturing runs.',
+        'Advanced capabilities include multi-cavity molds that enable the simultaneous production of multiple components, improving productivity and reducing cycle time.',
+        'Insert molding allows metal or other components to be integrated directly into plastic parts, while over molding provides enhanced functionality and durability by combining multiple materials into a single product.',
+        'Micro-molding capabilities support the creation of extremely small and intricate components, ensuring precision even in complex designs, while maintaining reliable high-volume production standards.'
       ]
     },
     {
       icon: Wrench,
       title: 'Tool Design & Engineering',
-      summary: 'Expert mold design and engineering services focused on optimized tooling solutions.',
+      summary: 'Expert mold design and engineering services focus on delivering optimized tooling solutions that enhance manufacturing efficiency, precision, and overall part quality.',
       details: [
-        'Advanced CAD/CAM design technologies for highly accurate mold structures',
-        'Detailed 3D modeling and simulation to visualize mold performance',
-        'Design for Manufacturing (DFM) analysis for cost-effectiveness and durability',
-        'Prototype tooling for testing and validation of product concepts',
-        'Production tooling for consistent, high-volume manufacturing',
-        'Superior dimensional accuracy and performance'
+        'Using advanced CAD/CAM design technologies, tool engineers develop highly accurate mold structures that support reliable and repeatable production.',
+        'Detailed 3D modeling and simulation allow the team to visualize mold performance, identify potential issues, and refine designs before manufacturing begins. Design for Manufacturing (DFM) analysis further ensures that each mold is engineered for cost-effectiveness, durability, and ease of production.',
+        'The service also includes prototype tooling for testing and validation of product concepts, followed by robust production tooling capable of supporting consistent, high-volume manufacturing with superior dimensional accuracy and performance.'
       ]
     },
+
     {
       icon: Cog,
       title: 'Precision Tooling',
-      summary: 'Advanced tooling solutions for complex manufacturing with precision and tight tolerances.',
+      summary: 'Advanced tooling solutions are developed to meet complex manufacturing requirements where precision, durability, and tight tolerances are essential.',
       details: [
-        'Advanced CNC machining for highly accurate components',
-        'EDM (Electrical Discharge Machining) for intricate shapes and fine details',
-        'Tight tolerance work ensuring strict dimensional specifications',
-        'Specialization in complex geometries for demanding applications',
-        'Comprehensive tool maintenance to extend tool life',
-        'Reliable performance throughout repeated production cycles'
+        'Using advanced CNC machining technologies, highly accurate components and tooling structures are produced with consistent quality and efficiency.',
+        'EDM (Electrical Discharge Machining) services enable the creation of intricate shapes and fine details that are difficult to achieve with conventional machining methods. The process supports tight tolerance work, ensuring that each component meets strict dimensional and performance specifications. Specialization in complex geometries allows the production of sophisticated tooling designs required for demanding applications.',
+        'In addition, comprehensive tool maintenance services help extend tool life, maintain accuracy, and ensure reliable performance throughout repeated production cycles.'
       ]
     },
+
     {
       icon: Package,
       title: 'Assembly Services',
-      summary: 'Complete assembly and packaging solutions to streamline your supply chain.',
+      summary: 'Complete assembly and packaging solutions are designed to streamline the supply chain and improve operational efficiency from production to delivery. These services support a wide range of requirements, from simple part assemblies to complex multi-component product configurations.',
       details: [
-        'Sub-assembly processes for pre-assembled components',
-        'Final assembly ensuring accurate integration into finished products',
-        'Comprehensive packaging solutions for storage and transportation',
-        'Kitting services organizing components into ready-to-use sets',
-        'Custom labeling for clear identification and traceability',
-        'Support from simple assemblies to complex multi-component products'
+        'Sub-assembly processes allow individual components to be pre-assembled, reducing time and effort during final production stages.',
+        'Final assembly services ensure that all parts are accurately integrated into a finished product that meets quality standards.',
+        'Comprehensive packaging solutions protect products during storage and transportation while maintaining a professional presentation.',
+        'Kitting services organize multiple components into ready-to-use sets, and custom labeling ensures clear identification, traceability, and compliance with customer or industry requirements.'
       ]
     },
+
     {
       icon: Microscope,
       title: 'Quality Testing',
-      summary: 'Rigorous quality control and testing protocols ensuring every component meets specifications.',
+      summary: 'Rigorous quality control and testing protocols are implemented to ensure that every component consistently meets precise specifications and industry standards. Using advanced inspection equipment and well-documented quality procedures, each stage of production is carefully monitored to maintain accuracy and reliability.',
       details: [
-        'VMM (Video Measuring Machine) for precision dimensions measuring and verification',
-        'First article inspection to validate initial production samples',
-        'Statistical Process Control (SPC) to monitor production data',
-        'Material testing to verify integrity and performance of raw materials',
-        'Detailed documentation ensuring traceability and compliance',
-        'Advanced inspection equipment and well-documented quality procedures'
+        'VMM (Video Measuring Machine) for precision dimensions measuring and verification provides highly precise dimensional verification of parts, ensuring they conform to design requirements.',
+        'First article inspection is conducted to validate the initial production sample before full-scale manufacturing begins.',
+        'Statistical Process Control (SPC) is used to monitor production data and maintain process stability.',
+        'In addition, material testing verifies the integrity and performance of raw materials, while detailed documentation ensures traceability, compliance, and continuous quality improvement throughout the manufacturing process.'
       ]
     },
+
     {
       icon: Shield,
       title: 'Quality Assurance',
-      summary: 'ISO-certified processes ensuring consistent quality, reliability, and accountability.',
+      summary: 'ISO-certified processes ensure consistent quality, reliability, and accountability throughout every stage of production.',
       details: [
-        'ISO 9001:2015 certification demonstrating quality management practices',
-        'Full traceability for materials, components, and production steps',
-        'Process validation to confirm consistent results',
-        'Continuous improvement initiatives for efficiency and performance',
-        'Customer audits welcomed with transparency and confidence',
-        'Complete visibility and control across manufacturing process'
+        'With a strong focus on structured systems and comprehensive documentation, operations are aligned with the standards of ISO 9001:2015 certification, demonstrating a commitment to internationally recognized quality management practices. Full traceability is maintained for materials, components, and production steps, allowing complete visibility and control across the manufacturing process.',
+        'Process validation procedures are implemented to confirm that each process consistently delivers results that meet required specifications. Continuous improvement initiatives drive ongoing enhancements in efficiency, quality, and performance.',
+        'In addition, customer audits are welcomed, reflecting transparency and confidence in maintaining the highest standards of manufacturing excellence.'
       ]
     },
+
     {
       icon: Settings,
       title: 'Secondary Operations',
-      summary: 'Value-added secondary operations to complete molded components.',
+      summary: 'Value-added secondary operations are provided to complete molded components and enhance their functionality, durability, and visual appeal. These processes help transform raw molded parts into fully finished products ready for final use or assembly.',
       details: [
-        'Pad printing for precise application of logos and graphics',
-        'Hot stamping for durable decorative finishes',
-        'Heat staking for reliable assembly with embedded components',
-        'Surface finishing techniques to improve texture and appearance',
-        'Transform raw molded parts into fully finished products'
+        'Pad printing enables precise application of logos, markings, and graphics on complex surfaces, while hot stamping adds durable decorative finishes such as metallic or coloured foils.',
+        'Ultrasonic welding is used to securely join plastic components through high-frequency vibration, creating strong and clean bonds without adhesives. Heat staking allows the reliable assembly of plastic parts with embedded components.',
+        'In addition, a range of surface finishing techniques improve texture, appearance, and product quality, delivering comprehensive solutions for finished components.'
       ]
     },
+
     {
       icon: Truck,
       title: 'Logistics & Fulfilment',
-      summary: 'Streamlined logistics and fulfillment services for efficient supply chain management.',
+      summary: 'Streamlined logistics and fulfillment services are designed to support efficient supply chain management and ensure timely delivery of products to customer facilities.',
       details: [
-        'Effective inventory management systems to monitor stock levels',
-        'Just-in-Time (JIT) delivery to reduce storage costs',
-        'Drop shipping services for direct delivery to end users',
-        'Global logistics capabilities for international coordination',
-        'Custom packaging solutions meeting regulatory requirements',
-        'Timely delivery of products to customer facilities'
+        'Through effective inventory management systems, stock levels are carefully monitored and maintained to prevent shortages or excess inventory.',
+        'Just-in-Time (JIT) delivery practices help synchronize production and delivery schedules, reducing storage costs and improving operational efficiency.',
+        'Drop shipping services allow products to be shipped directly to end users or designated locations without additional handling.',
+        'Global logistics capabilities enable reliable coordination of international transportation and distribution. In addition, custom packaging solutions are provided to protect products during transit while meeting specific customer, branding, and regulatory requirements.'
       ]
     }
   ]
