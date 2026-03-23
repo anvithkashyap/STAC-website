@@ -43,8 +43,7 @@ const Contact = () => {
       icon: Phone,
       title: 'Call Us',
       lines: [
-        '+91 98765 43210',
-        '+91 80 1234 5678'
+        '+91 91487 71815 (Shankar C V)'
       ],
       isLink: true,
       linkType: 'tel'
@@ -53,8 +52,7 @@ const Contact = () => {
       icon: Mail,
       title: 'Email Us',
       lines: [
-        'info@stacmoldtech.com',
-        'sales@stacmoldtech.com'
+        'Admin@stacmoldtech.in'
       ],
       isLink: true,
       linkType: 'mailto'

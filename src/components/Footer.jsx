@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, Linkedin, Facebook, Twitter } from 'lucide-react'
+import { MapPin, Phone, Mail } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -14,29 +14,6 @@ const Footer = () => {
               Precision Plastic Molding Specialists. Delivering excellence in injection molding, 
               tooling design, and manufacturing solutions for over 30 years.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-stac-blue transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={18} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-stac-blue transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={18} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-stac-blue transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={18} />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -100,19 +77,19 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="text-stac-blue flex-shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919148771815"
                   className="text-gray-400 hover:text-stac-blue transition-colors text-sm"
                 >
-                  +91 98765 43210
+                  +91 91487 71815 (Shankar C V)
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-stac-blue flex-shrink-0" />
                 <a
-                  href="mailto:info@stacmoldtech.com"
+                  href="mailto:Admin@stacmoldtech.in"
                   className="text-gray-400 hover:text-stac-blue transition-colors text-sm"
                 >
-                  info@stacmoldtech.com
+                  Admin@stacmoldtech.in
                 </a>
               </li>
             </ul>
