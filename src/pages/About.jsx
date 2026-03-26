@@ -391,7 +391,7 @@ const About = () => {
               Our Facility
             </span>
             <h2 className="section-title">Manufacturing Excellence</h2>
-            <p className="section-subtitle mx-auto">
+            <p className="text-gray-600 leading-relaxed text-justify max-w-full">
               The manufacturing plant has taken significant steps toward sustainability and operational resilience by integrating modern infrastructure and environmental practices. It has implemented a rainwater harvesting system along with groundwater recharge mechanisms to conserve and replenish water resources. To reduce dependence on conventional energy, solar panels have been installed to generate clean electricity. The facility is supported by a UPS-backed power infrastructure, ensuring uninterrupted operations even during outages. Additionally, a comprehensive fire compliance system has been established to enhance safety standards and protect both personnel and assets.
             </p>
           </div>
