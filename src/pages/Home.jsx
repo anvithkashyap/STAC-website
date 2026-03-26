@@ -253,10 +253,30 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center">
+          {/* Featured Clients - Larger */}
+          <div className="flex justify-center gap-12 mb-12">
             {[
-              { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Cummins' },
               { src: 'clients/704f063d-2472-43ba-8723-4b2a5571a320.png', alt: 'Atlas Copco' },
+              { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Cummins' },
+              { src: 'clients/fdd12794-2b48-44da-bde9-66768e21dee5.png', alt: 'Suprajit' }
+            ].map((client, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-xl p-8 flex items-center justify-center h-32 w-48 hover:shadow-xl transition-all hover:scale-105"
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}images/${client.src}`}
+                  alt={client.alt}
+                  className="max-h-full max-w-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Other Clients - Regular Size */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center">
+            {[
               { src: 'clients/568449ed-637c-4506-afe0-6e8d9450a0ae.png', alt: 'JVS Electronics' },
               { src: 'clients/191eed1f-896a-4c40-b5f7-1e01b828a86b.png', alt: 'Meccalte' },
               { src: 'clients/06764d69-c31c-4901-b729-d79dbd60aeba.png', alt: 'Edgar Interactive' },
@@ -267,8 +287,7 @@ const Home = () => {
               { src: 'clients/9c29cf20-d866-485f-b561-c800b406aabf.png', alt: 'Kemet' },
               { src: 'clients/e3ad83d8-d93b-469e-bd68-99595629eb76.png', alt: 'IIP' },
               { src: 'clients/234c37cf-1902-4ae5-8ee3-fb2e994463d7.png', alt: 'Godrej' },
-              { src: 'clients/8ba74434-33c8-4cf1-9b34-1adaa74c5d50.png', alt: 'India Packaging Products' },
-              { src: 'clients/fdd12794-2b48-44da-bde9-66768e21dee5.png', alt: 'Suprajit' }
+              { src: 'clients/8ba74434-33c8-4cf1-9b34-1adaa74c5d50.png', alt: 'India Packaging Products' }
             ].map((client, index) => (
               <div 
                 key={index}
