@@ -256,9 +256,9 @@ const Home = () => {
           {/* Featured Clients - Larger */}
           <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 animate-on-scroll">
             {[
-              { src: 'clients/704f063d-2472-43ba-8723-4b2a5571a320.png', alt: 'Atlas Copco' },
-              { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Cummins' },
-              { src: 'clients/fdd12794-2b48-44da-bde9-66768e21dee5.png', alt: 'Suprajit' }
+              { src: 'clients/Atlas Copco.png', alt: 'Atlas Copco' },
+              { src: 'clients/Cummins.png', alt: 'Cummins' },
+              { src: 'clients/Suprajit.png', alt: 'Suprajit' }
             ].map((client, index) => (
               <div 
                 key={index}
