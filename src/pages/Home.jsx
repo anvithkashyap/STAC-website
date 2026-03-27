@@ -254,7 +254,7 @@ const Home = () => {
           </div>
 
           {/* Featured Clients - Larger */}
-          <div className="flex justify-center gap-12 mb-12">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 animate-on-scroll">
             {[
               { src: 'clients/704f063d-2472-43ba-8723-4b2a5571a320.png', alt: 'Atlas Copco' },
               { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Cummins' },
@@ -262,12 +262,12 @@ const Home = () => {
             ].map((client, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-xl p-8 flex items-center justify-center h-32 w-48 hover:shadow-xl transition-all hover:scale-105"
+                className="bg-white rounded-xl p-6 md:p-8 flex items-center justify-center h-28 md:h-36 w-40 md:w-56 shadow-lg hover:shadow-2xl transition-all hover:scale-105"
               >
                 <img
                   src={`${import.meta.env.BASE_URL}images/${client.src}`}
                   alt={client.alt}
-                  className="max-h-full max-w-full object-contain"
+                  className="max-h-full max-w-full object-contain filter grayscale-0"
                   loading="lazy"
                 />
               </div>
