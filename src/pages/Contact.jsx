@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import ContactForm from '../components/ContactForm'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -100,22 +99,8 @@ const Contact = () => {
       {/* Contact Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Contact Form */}
-            <div className="lg:col-span-2 animate-on-scroll">
-              <div className="bg-stac-gray rounded-lg p-8 md:p-10">
-                <h2 className="font-heading font-bold text-2xl text-stac-charcoal mb-2">
-                  Send Us a Message
-                </h2>
-                <p className="text-gray-600 mb-8">
-                  Fill out the form below and our team will get back to you within 24 hours.
-                </p>
-                <ContactForm />
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-6">
+          <div className="max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
                 <div 
                   key={index}
