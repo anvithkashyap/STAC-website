@@ -391,9 +391,30 @@ const About = () => {
               Our Facility
             </span>
             <h2 className="section-title">Manufacturing Excellence</h2>
-            <p className="text-gray-600 leading-relaxed text-justify max-w-full">
-              The manufacturing plant has taken significant steps toward sustainability and operational resilience by integrating modern infrastructure and environmental practices. It has implemented a rainwater harvesting system along with groundwater recharge mechanisms to conserve and replenish water resources. To reduce dependence on conventional energy, solar panels have been installed to generate clean electricity. The facility is supported by a UPS-backed power infrastructure, ensuring uninterrupted operations even during outages. Additionally, a comprehensive fire compliance system has been established to enhance safety standards and protect both personnel and assets.
-            </p>
+            <div className="text-left max-w-4xl mx-auto">
+              <ul className="space-y-4 text-gray-600 leading-relaxed">
+                <li className="flex items-start">
+                  <span className="text-stac-red mr-3 mt-1">•</span>
+                  <span>The manufacturing plant has taken significant steps toward sustainability and operational resilience by integrating modern infrastructure and environmental practices.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-stac-red mr-3 mt-1">•</span>
+                  <span>It has implemented a rainwater harvesting system along with groundwater recharge mechanisms to conserve and replenish water resources.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-stac-red mr-3 mt-1">•</span>
+                  <span>To reduce dependence on conventional energy, solar panels have been installed to generate clean electricity.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-stac-red mr-3 mt-1">•</span>
+                  <span>The facility is supported by a UPS-backed power infrastructure, ensuring uninterrupted operations even during outages.</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-stac-red mr-3 mt-1">•</span>
+                  <span>Additionally, a comprehensive fire compliance system has been established to enhance safety standards and protect both personnel and assets.</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -472,75 +493,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Image Carousel Section */}
-      <section className="section-padding bg-stac-gray">
-        <div className="container-custom">
-          <div className="text-center mb-12 animate-on-scroll">
-            <span className="text-stac-red font-semibold uppercase tracking-wider text-sm mb-4 block">
-              Our Facility
-            </span>
-            <h2 className="section-title">Gallery</h2>
-            <p className="section-subtitle mx-auto">
-              A glimpse into our state-of-the-art manufacturing facility
-            </p>
-          </div>
-
-          <div className="relative max-w-5xl mx-auto">
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-              <img
-                src={`${import.meta.env.BASE_URL}images/Carasol photos/${carouselImages[currentImageIndex]}`}
-                alt={`Facility ${currentImageIndex + 1}`}
-                className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover"
-                loading="lazy"
-              />
-              
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-all hover:scale-110"
-                aria-label="Previous image"
-              >
-                <ChevronLeft size={24} className="text-stac-charcoal" />
-              </button>
-              
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-all hover:scale-110"
-                aria-label="Next image"
-              >
-                <ChevronRight size={24} className="text-stac-charcoal" />
-              </button>
-
-              {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stac-charcoal/80 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                {currentImageIndex + 1} / {carouselImages.length}
-              </div>
-            </div>
-
-            {/* Thumbnail Navigation */}
-            <div className="flex justify-center gap-2 mt-6 overflow-x-auto pb-2">
-              {carouselImages.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                    currentImageIndex === index 
-                      ? 'border-stac-red scale-110' 
-                      : 'border-transparent opacity-60 hover:opacity-100'
-                  }`}
-                >
-                  <img
-                    src={`${import.meta.env.BASE_URL}images/Carasol photos/${image}`}
-                    alt={`Thumbnail ${index + 1}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Memorial Section */}
       <section className="section-padding bg-white">
