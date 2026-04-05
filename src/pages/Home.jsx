@@ -253,29 +253,8 @@ const Home = () => {
             </p>
           </div>
 
-          {/* Featured Clients - Larger */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 animate-on-scroll">
-            {[
-              { src: 'clients/Atlas Copco.png', alt: 'Atlas Copco' },
-              { src: 'clients/Cummins.png', alt: 'Cummins' },
-              { src: 'clients/Suprajit.png', alt: 'Suprajit' }
-            ].map((client, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl p-6 md:p-8 flex items-center justify-center h-28 md:h-36 w-40 md:w-56 shadow-lg hover:shadow-2xl transition-all hover:scale-105"
-              >
-                <img
-                  src={`${import.meta.env.BASE_URL}images/${client.src}`}
-                  alt={client.alt}
-                  className="max-h-full max-w-full object-contain filter grayscale-0"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Other Clients - Regular Size */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center">
+          {/* All Clients - Unified Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center">
             {[
               { src: 'clients/568449ed-637c-4506-afe0-6e8d9450a0ae.png', alt: 'JVS Electronics' },
               { src: 'clients/191eed1f-896a-4c40-b5f7-1e01b828a86b.png', alt: 'Meccalte' },
@@ -284,6 +263,9 @@ const Home = () => {
               { src: 'clients/2fffab9e-0a18-4275-97c6-638a11d43bc0.png', alt: 'Client' },
               { src: 'clients/c267d734-0124-42a6-a8fd-4e9f9a40ad1e.png', alt: 'Jay Group' },
               { src: 'clients/67b33ab9-e6a6-4c0d-a7d0-0d0795ff1b55.png', alt: 'Filcomps' },
+              { src: 'clients/Atlas Copco.png', alt: 'Atlas Copco' },
+              { src: 'clients/Cummins.png', alt: 'Cummins' },
+              { src: 'clients/Suprajit.png', alt: 'Suprajit' },
               { src: 'clients/9c29cf20-d866-485f-b561-c800b406aabf.png', alt: 'Kemet' },
               { src: 'clients/e3ad83d8-d93b-469e-bd68-99595629eb76.png', alt: 'IIP' },
               { src: 'clients/234c37cf-1902-4ae5-8ee3-fb2e994463d7.png', alt: 'Godrej' },
