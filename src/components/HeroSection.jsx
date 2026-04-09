@@ -34,8 +34,8 @@ const HeroSection = () => {
           
           {/* Company Name Banner */}
           <div className="bg-white py-3 px-6 mb-6 animate-slide-up -mx-4 sm:-mx-6 lg:-mx-8" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}>
-            <p className="text-xl md:text-2xl lg:text-3xl font-nyala">
-              <span className="text-stac-red font-bold">STAC</span> <span className="text-stac-blue">MoldTech Private Limited</span>
+            <p className="text-2xl md:text-3xl lg:text-4xl font-nyala">
+              <span className="text-stac-red font-bold">STAC</span><span className="text-stac-blue">MoldTech Private Limited</span>
             </p>
           </div>
           
