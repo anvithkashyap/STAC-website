@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Nyala font for company name */
+/* Elegant serif font for company name */
 .font-nyala {
-  font-family: 'Nyala', 'Times New Roman', Georgia, serif;
-  font-weight: 400;
+  font-family: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  font-weight: 500;
 }
 
 @layer base {
