@@ -256,20 +256,20 @@ const Home = () => {
           {/* All Clients - Unified Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center">
             {[
-              { src: 'clients/568449ed-637c-4506-afe0-6e8d9450a0ae.png', alt: 'JVS Electronics' },
-              { src: 'clients/3f4f1ae0-2486-451d-af59-3950a0a5c1e0.png', alt: 'Nandi Powertronics' },
-              { src: 'clients/fdd12794-2b48-44da-bde9-66768e21dee5.png', alt: 'Suprajit' },
-              { src: 'clients/234c37cf-1902-4ae5-8ee3-fb2e994463d7.png', alt: 'Godrej' },
-              { src: 'clients/67b33ab9-e6a6-4c0d-a7d0-0d0795ff1b55.png', alt: 'Filcomps' },
               { src: 'clients/9c29cf20-d866-485f-b561-c800b406aabf.png', alt: 'Kemet' },
+              { src: 'clients/568449ed-637c-4506-afe0-6e8d9450a0ae.png', alt: 'JVS Electronics' },
+              { src: 'clients/67b33ab9-e6a6-4c0d-a7d0-0d0795ff1b55.png', alt: 'Filcomps' },
+              { src: 'clients/234c37cf-1902-4ae5-8ee3-fb2e994463d7.png', alt: 'Godrej' },
               { src: 'clients/8ba74434-33c8-4cf1-9b34-1adaa74c5d50.png', alt: 'India Packaging Products' },
+              { src: 'clients/191eed1f-896a-4c40-b5f7-1e01b828a86b.png', alt: 'Meccalte' },
+              { src: 'clients/06764d69-c31c-4901-b729-d79dbd60aeba.png', alt: 'Edgar Interactive' },
+              { src: 'clients/3f4f1ae0-2486-451d-af59-3950a0a5c1e0.png', alt: 'Nandi Powertronics' },
+              { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Cummins' },
               { src: 'clients/Atlas Copco.png', alt: 'Atlas Copco' },
               { src: 'clients/Cummins.png', alt: 'Cummins' },
               { src: 'clients/Suprajit.png', alt: 'Suprajit' },
-              { src: 'clients/191eed1f-896a-4c40-b5f7-1e01b828a86b.png', alt: 'Meccalte' },
-              { src: 'clients/e3ad83d8-d93b-469e-bd68-99595629eb76.png', alt: 'IIP' },
-              { src: 'clients/06764d69-c31c-4901-b729-d79dbd60aeba.png', alt: 'Edgar Interactive' },
-              { src: 'clients/74771e34-cb8a-41cf-95f4-27ecde91cece.png', alt: 'Godrej' }
+              { src: 'clients/fdd12794-2b48-44da-bde9-66768e21dee5.png', alt: 'Suprajit Old' },
+              { src: 'clients/2fffab9e-0a18-4275-97c6-638a11d43bc0.png', alt: 'Godrej' }
             ].map((client, index) => (
               <div 
                 key={index}
