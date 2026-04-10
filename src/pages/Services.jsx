@@ -143,8 +143,8 @@ const Services = () => {
   const industries = [
     'Automotive',
     'Medical Devices',
-    'Consumer Electronics',
-    'Industrial Equipment',
+    'Electical',
+    'Electronics',
     'Consumer Products'
   ]
 

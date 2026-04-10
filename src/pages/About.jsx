@@ -30,37 +30,37 @@ const About = () => {
 
   const testimonials = [
     {
-      quote: "STAC - A Legacy business partner of over 30 Years!! STAC has been our trusted business partner and one-stop solution for delivering high-precision, intricate components with an unwavering commitment to excellence. What sets STAC apart? Right First Time (RFT) quality, Affordable solutions without compromising on accuracy, Short lead times that keep our projects on track. When it comes to reliability, craftsmanship, and speed — STAC delivers every time.",
-      name: "C.P. Navneeth Kumar",
+      quote: "STAC - A Legacy business partner of over 30 Years!! STAC has been our trusted business partner and one-stop solution for delivering high-precision, intricate components with an unwavering commitment to excellence. What sets STAC apart? Right First Time (RFT) quality Affordable solutions without compromising on accuracy Short lead times that keep our projects on track When it comes to reliability, craftsmanship, and speed — STAC delivers every time. Regards,",
+      name: "C P Navneeth Kumar",
       title: "Executive Advisor",
       company: "MAL Group"
     },
     {
-      quote: "STAC is an excellent Company with matured management & technical Team. This company is a one stop solution for critical plastic parts design & Manufacturing. Quality of Moulds/Plastic parts produced are in Par with best in automotive industry.",
+      quote: "STAC is an excellent Company with matured management & technical Team. The company is a one stop solution for critical plastic parts design & Manufacturing. Quality of Moulds /Plastic parts produced are in Par with best in automotive industry. Best Regards,",
       name: "Ganesh Naidu GN",
       title: "General Manager - Cable Technology",
       company: "Suprajit Automotive Private Limited"
     },
     {
-      quote: "We've been working with the STAC MoldTech Private Limited for several years, and their commitment to excellence has been outstanding. Their precision in plastic parts tooling & manufacturing, top-notch setup, and consistent on-time delivery make them a reliable partner. Their collaborative approach and eagerness to go the extra mile for customer satisfaction truly set them apart.",
+      quote: "We've been working with the STAC MoldTech Private Limited, for several years, and their commitment to excellence has been outstanding. Their precision in plastic parts tooling & manufacturing, top-notch setup, and consistent on-time delivery make them a reliable partner. Their collaborative approach and eagerness to go the extra mile for customer satisfaction truly set them apart. The quality of their work and dedication to co-development have added great value to our operations. Highly recommended for anyone seeking a dependable and quality-focused business partner. Best regards,",
       name: "Vaibhav Deshmukh",
       title: "Engineering Manager",
       company: "Medical Gas Solutions (MGS) Division"
     },
     {
-      quote: "We, Cummins Generator Technologies India Pvt. Ltd. (CGT India) have the privilege of working with STAC for over 30 years, and their partnership has been nothing short of exceptional. Throughout our association, they have consistently delivered excellent service, demonstrating a deep understanding of our business needs and operational goals.",
+      quote: "We, Cummins Generator Technologies India Pvt. Ltd. (CGT India) have the privilege of working with STAC for over 30 years, and their partnership has been nothing short of exceptional. Throughout our association, they have consistently delivered excellent service, demonstrating a deep understanding of our business needs and operational goals. Their proactive approach in identifying and implementing technical solutions has played a significant role in supporting our growth and ensuring uninterrupted performance in our supply chain. In addition to their technical expertise, STAC Moldtech has maintained a strong focus on customer service and cost competitiveness without ever compromising on quality or reliability. Their commitment to continuous improvement and collaboration makes them a trusted and valued partner in our ecosystem. We truly appreciate the dedication and professionalism that STAC Moldtech brings to the table, and we look forward to continuing this successful relationship in the years to come.",
       name: "Dinesh S Zapake",
-      title: "Operations Leader",
+      title: "Operations Leader -",
       company: "CGT India, Cummins Inc."
     },
     {
-      quote: "We have been associated with STAC for more than 15 years now and value their consistent quality, reliability, and support. Their team is responsive, technically sound especially in tool building and committed to excellence, making them a trusted and long-term partner in our supply chain.",
+      quote: "We have been associated with STAC for more than 15 years now and value their consistent quality, reliability, and support. Their team is responsive, technically sound especially in tool building and committed to excellence, making them a trusted and long-term partner in our supply chain. Thanks & regards,",
       name: "S. Mahesh Hegde",
       title: "VP-Operations",
-      company: "Suprajit Automotive Private Limited"
+      company: "| m: +919342678355 Suprajit Automotive Private Limited"
     },
     {
-      quote: "It is a great experience working with your company. Till date there are billions of plastic parts supplied from your company that are running on our customer car brands like BMW Group, VW Group, Renault, Nissan, Suzuki & many more world class automotive companies. The quality of your parts & moulding tools is great.",
+      quote: "It is a great experience working with your company. Till date there are billions of plastic parts supplied from your company that are running on our customer car brands like BMW Group, VW Group, Renault, Nissan, Suzuki & many more world class automotive companies. The quality of your parts & moulding tools is great. We appreciate your efforts to continuously improve Quality, Technology, Delivery & Cost. Happy to see your company growing with us. Thanks & regards, ,",
       name: "Ravi A G",
       title: "Plant Head",
       company: "Suprajit Automotive Private Limited"
@@ -399,15 +399,15 @@ const About = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="text-stac-red mr-3 mt-1">•</span>
+                  <span>The facility is supported by a UPS-backed power infrastructure, ensuring uninterrupted operations even during outages. </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-stac-red mr-3 mt-1">•</span>
                   <span>It has implemented a rainwater harvesting system along with groundwater recharge mechanisms to conserve and replenish water resources.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-stac-red mr-3 mt-1">•</span>
                   <span>To reduce dependence on conventional energy, solar panels have been installed to generate clean electricity.</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-stac-red mr-3 mt-1">•</span>
-                  <span>The facility is supported by a UPS-backed power infrastructure, ensuring uninterrupted operations even during outages.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-stac-red mr-3 mt-1">•</span>
