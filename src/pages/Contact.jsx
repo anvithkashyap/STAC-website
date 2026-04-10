@@ -170,11 +170,11 @@ const Contact = () => {
               },
               {
                 q: 'Do you offer prototype services?',
-                a: 'Yes, we offer rapid prototyping services including 3D printing and soft tooling for low-volume prototype runs before committing to production tooling.'
+                a: 'Yes, we offer rapid prototyping services including soft tooling for low-volume prototype runs before committing to production tooling.'
               },
               {
                 q: 'What materials do you work with?',
-                a: 'We work with a wide range of thermoplastics including ABS, PC, PP, PE, Nylon, POM, and engineering-grade materials. We can recommend the best material for your application.'
+                a: 'We work with a wide range of thermoplastics including ABS, PC, Nylon, POM, and engineering-grade materials. We can recommend the best material for your application.'
               },
               {
                 q: 'What is your minimum order quantity?',

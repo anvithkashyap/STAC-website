@@ -68,20 +68,20 @@ const About = () => {
   ]
 
   const engineeringPlastics = [
-    'Nylon 66 33% GF - Zytel 70G33I BK031 from Celanese',
-    'Nylon 66 UF - Zytel 101 LBK from Celanese',
-    'Nylon 66 GF 30% - Zytel 70G30HSL BK from Celanese',
-    'POM - Delrin 500P BK from Dupont',
-    'Nylon 6 30% GF - Akulon K224 HG6 from DSM Polymers',
-    'Nylon 66 UF - Zytel MT409AHS from Celanese',
+    'Nylon 66 33% GF',
+    'Nylon 66 UF',
+    'Nylon 66 GF 30%',
+    'POM',
+    'Nylon 6 30% GF',
+    'Nylon 66 UF',
     'ABS FR AN450N from Bhansali Polymers',
-    'Nylon 66 25% FR - Zytel FR50 BK505 from Celanese',
-    'PP GF 30% - Thermofil GPP 1630 from Sumika Polymers',
-    'ABS-PC Blend - Cycoly C1200HF-1001 from Sabic Engineering Polymers',
-    'Nylon 66 Carbon + Glass fiber filled - RTP 299 X 131721 BLK from RTP Singapore',
-    'Antimicrobial additive - Biomaster 966 from Admaster UK',
-    'PPS GF 40% - Torelina A504X90 from Toray Industries, Japan',
-    'PPA 33%GF - Amodel AS-4133 L from Solvay Speciality Polymers, USA'
+    'Nylon 66 25% FR',
+    'PP GF 30%',
+    'ABS-PC Blend',
+    'Nylon 66 Carbon + Glass fiber filled',
+    'Antimicrobial additive',
+    'PPS GF 40%',
+    'PPA 33%GF'
   ]
 
   const nextTestimonial = () => {

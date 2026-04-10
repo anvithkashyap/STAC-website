@@ -224,8 +224,7 @@ const Products = () => {
               Products
             </h1>
             <p className="text-xl text-white/80 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              Explore our comprehensive range of precision-engineered moulds, 
-              plastic components, and industrial parts.
+              
             </p>
           </div>
         </div>
