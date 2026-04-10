@@ -221,7 +221,7 @@ const Products = () => {
               Our Products
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 animate-slide-up">
-              Product Catalogue
+              Products
             </h1>
             <p className="text-xl text-white/80 animate-slide-up" style={{ animationDelay: '0.2s' }}>
               Explore our comprehensive range of precision-engineered moulds, 
@@ -231,142 +231,38 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Filter & Search Section */}
-      <section className="py-8 bg-white border-b border-gray-200 sticky top-16 z-40">
+      {/* Product Images */}
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-            {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                    selectedCategory === category.id
-                      ? 'bg-stac-red text-white'
-                      : 'bg-stac-gray text-stac-charcoal hover:bg-stac-red/10'
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Search */}
-            <div className="relative">
-              <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-4 py-3 w-full lg:w-80 rounded-lg border border-gray-200 focus:border-stac-blue focus:ring-2 focus:ring-stac-blue/20 outline-none transition-all"
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <img
+                src={`${import.meta.env.BASE_URL}images/Product/flashlight_torch__exploded_view__internal_components.png`}
+                alt="Product"
+                className="w-full h-full object-cover"
+                loading="lazy"
               />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  <X size={18} />
-                </button>
-              )}
+            </div>
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <img
+                src={`${import.meta.env.BASE_URL}images/Product/injection_molded_plastic_parts__small_mechanical_components__flat_lay.png`}
+                alt="Product"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="overflow-hidden rounded-lg shadow-lg">
+              <img
+                src={`${import.meta.env.BASE_URL}images/Product/machined_metal_shafts__small_mechanical_components__flat_lay.png`}
+                alt="Product"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="section-padding bg-stac-gray">
-        <div className="container-custom">
-          <div className="mb-8">
-            <p className="text-gray-600">
-              Showing <span className="font-semibold text-stac-charcoal">{filteredProducts.length}</span> products
-            </p>
-          </div>
-
-          {filteredProducts.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product, index) => (
-                <div
-                  key={product.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
-                  onClick={() => openLightbox(product)}
-                >
-                  <div className="relative aspect-square overflow-hidden bg-gray-100">
-                    <img
-                      src={`${import.meta.env.BASE_URL}images/${product.image}`}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-stac-charcoal/0 group-hover:bg-stac-charcoal/40 transition-all duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center">
-                          <ZoomIn size={24} className="text-stac-charcoal" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-5">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-stac-blue mb-2 block">
-                      {categories.find(c => c.id === product.category)?.label || product.category}
-                    </span>
-                    <h3 className="font-heading font-bold text-lg text-stac-charcoal mb-2 group-hover:text-stac-red transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm line-clamp-2">
-                      {product.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-lg">No products found matching your criteria.</p>
-              <button
-                onClick={() => { setSelectedCategory('all'); setSearchTerm(''); }}
-                className="mt-4 text-stac-blue font-semibold hover:underline"
-              >
-                Clear filters
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Lightbox Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-          onClick={closeLightbox}
-        >
-          <button
-            onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white hover:text-stac-orange transition-colors"
-          >
-            <X size={32} />
-          </button>
-          <div
-            className="max-w-5xl max-h-[90vh] w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}images/${selectedImage.image}`}
-              alt={selectedImage.name}
-              className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
-            />
-            <div className="mt-4 text-center">
-              <h3 className="text-white text-2xl font-heading font-bold mb-2">
-                {selectedImage.name}
-              </h3>
-              <p className="text-white/70">
-                {selectedImage.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }
