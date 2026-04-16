@@ -81,7 +81,7 @@ const About = () => {
     'Nylon 66 Carbon + Glass fiber filled',
     'Antimicrobial additive',
     'PPS GF 40%',
-    'PPA 33%GF'
+    'PPA 33%GF '
   ]
 
   const nextTestimonial = () => {

@@ -233,31 +233,43 @@ const Products = () => {
       {/* Product Images */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="overflow-hidden rounded-lg shadow-lg">
-              <img
-                src={`${import.meta.env.BASE_URL}images/Product/flashlight_torch__exploded_view__internal_components.png`}
-                alt="Product"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="overflow-hidden rounded-lg shadow-lg">
-              <img
-                src={`${import.meta.env.BASE_URL}images/Product/injection_molded_plastic_parts__small_mechanical_components__flat_lay.png`}
-                alt="Product"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="overflow-hidden rounded-lg shadow-lg">
-              <img
-                src={`${import.meta.env.BASE_URL}images/Product/machined_metal_shafts__small_mechanical_components__flat_lay.png`}
-                alt="Product"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              'WhatsApp Image 2026-04-14 at 10.32.09 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.09 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.10 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.10 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.11 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.11 PM (2).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.11 PM (3).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.11 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.12 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.12 PM (2).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.12 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.13 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.13 PM (2).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.13 PM (3).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.13 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.14 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.14 PM (2).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.14 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.15 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.15 PM (2).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.15 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.16 PM (1).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.16 PM (2).jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.16 PM.jpeg',
+              'WhatsApp Image 2026-04-14 at 10.32.17 PM.jpeg'
+            ].map((image, index) => (
+              <div key={index} className="overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <img
+                  src={`${import.meta.env.BASE_URL}Products Images/${image}`}
+                  alt={`Product ${index + 1}`}
+                  className="w-full h-full object-cover aspect-square"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
